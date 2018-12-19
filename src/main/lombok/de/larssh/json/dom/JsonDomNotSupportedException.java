@@ -17,6 +17,6 @@ public class JsonDomNotSupportedException extends DOMException {
 	 * message.
 	 */
 	public JsonDomNotSupportedException() {
-		super(DOMException.NOT_SUPPORTED_ERR, "Not supported.");
+		super(DOMException.NOT_SUPPORTED_ERR, "Not supported.", null);
 	}
 }
