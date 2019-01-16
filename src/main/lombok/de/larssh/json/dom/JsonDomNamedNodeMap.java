@@ -1,6 +1,7 @@
 package de.larssh.json.dom;
 
-import java.util.Collections;
+import static java.util.Collections.unmodifiableMap;
+
 import java.util.Iterator;
 import java.util.Map;
 
@@ -25,7 +26,7 @@ public class JsonDomNamedNodeMap<E extends Node> extends ProxiedMap<String, E> i
 	 * @param map map of keys to nodes
 	 */
 	public JsonDomNamedNodeMap(final Map<String, E> map) {
-		super(Collections.unmodifiableMap(map));
+		super(unmodifiableMap(map));
 	}
 
 	/** {@inheritDoc} */

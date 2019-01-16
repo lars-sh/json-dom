@@ -1,6 +1,7 @@
 package de.larssh.json.dom;
 
-import java.util.Collections;
+import static java.util.Collections.unmodifiableList;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -23,7 +24,7 @@ public class JsonDomNodeList<E extends Node> extends ProxiedList<E> implements N
 	 * @param list list of nodes
 	 */
 	public JsonDomNodeList(final List<E> list) {
-		super(Collections.unmodifiableList(list));
+		super(unmodifiableList(list));
 	}
 
 	/** {@inheritDoc} */

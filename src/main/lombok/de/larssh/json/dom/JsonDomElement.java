@@ -2,11 +2,11 @@ package de.larssh.json.dom;
 
 import static de.larssh.utils.Collectors.toLinkedHashMap;
 import static de.larssh.utils.Finals.constant;
+import static java.util.Arrays.asList;
+import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -61,12 +61,10 @@ public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 	 *
 	 * @return map of attribute names to attribute node
 	 */
-	Supplier<JsonDomNamedNodeMap<JsonDomAttribute<T>>> attributes = Finals.lazy(() -> new JsonDomNamedNodeMap<>(Arrays
-			.asList(new JsonDomAttribute<>(this,
-					getJsonDomValue().getType().getValue(),
-					getJsonDomValue()::getTextValue))
-			.stream()
-			.collect(toLinkedHashMap(JsonDomAttribute::getNodeName, Function.identity()))));
+	Supplier<JsonDomNamedNodeMap<JsonDomAttribute<T>>> attributes = Finals.lazy(() -> new JsonDomNamedNodeMap<>(asList(
+			new JsonDomAttribute<>(this, getJsonDomValue().getType().getValue(), getJsonDomValue()::getTextValue))
+					.stream()
+					.collect(toLinkedHashMap(JsonDomAttribute::getNodeName, Function.identity()))));
 
 	/**
 	 * Constructor of {@link JsonDomElement}.
@@ -130,7 +128,7 @@ public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 	@Override
 	public JsonDomNodeList<JsonDomElement<T>> getElementsByTagName(@Nullable final String name) {
 		if (name == null) {
-			return new JsonDomNodeList<>(Collections.emptyList());
+			return new JsonDomNodeList<>(emptyList());
 		}
 
 		final List<JsonDomElement<T>> list = new ArrayList<>();

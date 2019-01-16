@@ -1,8 +1,7 @@
 package de.larssh.json.dom;
 
 import static de.larssh.utils.Finals.constant;
-
-import java.util.Arrays;
+import static java.util.Collections.singletonList;
 
 import org.w3c.dom.CDATASection;
 import org.w3c.dom.Comment;
@@ -145,7 +144,7 @@ public class JsonDomDocument<T> extends JsonDomNode<T> implements Document {
 	@NonNull
 	@Override
 	public JsonDomNodeList<JsonDomElement<T>> getChildNodes() {
-		return new JsonDomNodeList<>(Arrays.asList(getDocumentElement()));
+		return new JsonDomNodeList<>(singletonList(getDocumentElement()));
 	}
 
 	/** {@inheritDoc} */

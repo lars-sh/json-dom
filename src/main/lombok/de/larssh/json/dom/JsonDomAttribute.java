@@ -1,6 +1,7 @@
 package de.larssh.json.dom;
 
-import java.util.Collections;
+import static java.util.Collections.emptyList;
+
 import java.util.Iterator;
 import java.util.Objects;
 import java.util.function.Supplier;
@@ -58,7 +59,7 @@ public class JsonDomAttribute<T> extends JsonDomNode<T> implements Attr {
 	@NonNull
 	@Override
 	public JsonDomNodeList<JsonDomElement<T>> getChildNodes() {
-		return new JsonDomNodeList<>(Collections.emptyList());
+		return new JsonDomNodeList<>(emptyList());
 	}
 
 	/** {@inheritDoc} */
