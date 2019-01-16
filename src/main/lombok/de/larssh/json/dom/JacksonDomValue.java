@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.node.JsonNodeType;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.Nullable;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +33,7 @@ public class JacksonDomValue implements JsonDomValue<JsonNode> {
 	/** {@inheritDoc} */
 	@NonNull
 	@Override
+	@SuppressFBWarnings("STT_TOSTRING_MAP_KEYING")
 	public Map<String, JacksonDomValue> getChildren() {
 		final Map<String, JacksonDomValue> children = new LinkedHashMap<>();
 		final JsonNode node = getJsonElement();
@@ -60,6 +62,8 @@ public class JacksonDomValue implements JsonDomValue<JsonNode> {
 	/** {@inheritDoc} */
 	@NonNull
 	@Override
+	@SuppressFBWarnings(value = "WEM_WEAK_EXCEPTION_MESSAGING",
+			justification = "there is no more information about nodeType")
 	public JsonDomType getType() {
 		final JsonNodeType nodeType = getJsonElement().getNodeType();
 		if (nodeType == JsonNodeType.ARRAY) {

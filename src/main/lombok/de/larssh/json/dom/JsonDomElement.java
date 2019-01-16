@@ -2,8 +2,8 @@ package de.larssh.json.dom;
 
 import static de.larssh.utils.Collectors.toLinkedHashMap;
 import static de.larssh.utils.Finals.constant;
-import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
+import static java.util.Collections.singletonList;
 import static java.util.stream.Collectors.toList;
 
 import java.util.ArrayList;
@@ -46,8 +46,6 @@ public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 
 	/**
 	 * List of child element nodes
-	 *
-	 * @return list of child element nodes
 	 */
 	Supplier<JsonDomNodeList<JsonDomElement<T>>> childNodes
 			= Finals.lazy(() -> new JsonDomNodeList<>(getJsonDomValue().getChildren()
@@ -61,10 +59,11 @@ public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 	 *
 	 * @return map of attribute names to attribute node
 	 */
-	Supplier<JsonDomNamedNodeMap<JsonDomAttribute<T>>> attributes = Finals.lazy(() -> new JsonDomNamedNodeMap<>(asList(
-			new JsonDomAttribute<>(this, getJsonDomValue().getType().getValue(), getJsonDomValue()::getTextValue))
-					.stream()
-					.collect(toLinkedHashMap(JsonDomAttribute::getNodeName, Function.identity()))));
+	Supplier<JsonDomNamedNodeMap<JsonDomAttribute<T>>> attributes
+			= Finals.lazy(() -> new JsonDomNamedNodeMap<>(singletonList(new JsonDomAttribute<>(this,
+					getJsonDomValue().getType().getValue(),
+					getJsonDomValue()::getTextValue)).stream()
+							.collect(toLinkedHashMap(JsonDomAttribute::getNodeName, Function.identity()))));
 
 	/**
 	 * Constructor of {@link JsonDomElement}.
@@ -133,7 +132,7 @@ public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 
 		final List<JsonDomElement<T>> list = new ArrayList<>();
 		for (final JsonDomElement<T> child : getChildNodes()) {
-			if (name.equals(child.getTagName()) || name.equals("*")) {
+			if (name.equals(child.getTagName()) || "*".equals(name)) {
 				list.add(child);
 			}
 			list.addAll(child.getElementsByTagName(name));

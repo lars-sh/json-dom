@@ -11,6 +11,7 @@ import com.google.gson.JsonPrimitive;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.Nullable;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -33,6 +34,7 @@ public class GsonDomValue implements JsonDomValue<JsonElement> {
 	/** {@inheritDoc} */
 	@NonNull
 	@Override
+	@SuppressFBWarnings("STT_TOSTRING_MAP_KEYING")
 	public Map<String, GsonDomValue> getChildren() {
 		final Map<String, GsonDomValue> children = new LinkedHashMap<>();
 		final JsonElement element = getJsonElement();
@@ -64,6 +66,8 @@ public class GsonDomValue implements JsonDomValue<JsonElement> {
 	/** {@inheritDoc} */
 	@NonNull
 	@Override
+	@SuppressFBWarnings(value = "WEM_WEAK_EXCEPTION_MESSAGING",
+			justification = "there is no more information about element and primitive")
 	public JsonDomType getType() {
 		final JsonElement element = getJsonElement();
 		if (element.isJsonArray()) {
@@ -75,19 +79,21 @@ public class GsonDomValue implements JsonDomValue<JsonElement> {
 		if (element.isJsonObject()) {
 			return JsonDomType.OBJECT;
 		}
+		if (!element.isJsonPrimitive()) {
+			throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Unknown JSON data type.");
+		}
 
-		final JsonPrimitive jsonPrimitive = element.getAsJsonPrimitive();
-		if (jsonPrimitive.isBoolean()) {
+		final JsonPrimitive primitive = element.getAsJsonPrimitive();
+		if (primitive.isBoolean()) {
 			return JsonDomType.BOOLEAN;
 		}
-		if (jsonPrimitive.isNumber()) {
+		if (primitive.isNumber()) {
 			return JsonDomType.NUMBER;
 		}
-		if (jsonPrimitive.isString()) {
+		if (primitive.isString()) {
 			return JsonDomType.STRING;
 		}
-
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Unknown JSON data type.");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Unknown primitive JSON data type.");
 	}
 
 	/** {@inheritDoc} */
