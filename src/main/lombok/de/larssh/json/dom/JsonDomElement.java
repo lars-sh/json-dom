@@ -38,6 +38,11 @@ public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 	public static final String ARRAY_ITEM_NODE_NAME_PREFIX = constant("item");
 
 	/**
+	 * The special value "*" matches all tags.
+	 */
+	private static final String GET_ELEMENTS_BY_TAG_NAME_WILDCARD = constant("*");
+
+	/**
 	 * Wrapped JSON element
 	 *
 	 * @return wrapped JSON element
@@ -132,7 +137,7 @@ public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 
 		final List<JsonDomElement<T>> list = new ArrayList<>();
 		for (final JsonDomElement<T> child : getChildNodes()) {
-			if (name.equals(child.getTagName()) || "*".equals(name)) {
+			if (name.equals(child.getTagName()) || name.equals(GET_ELEMENTS_BY_TAG_NAME_WILDCARD)) {
 				list.add(child);
 			}
 			list.addAll(child.getElementsByTagName(name));
