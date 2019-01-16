@@ -48,6 +48,10 @@
 		<url>https://travis-ci.org/lars-sh/json-dom</url>
 	</ciManagement>
 
+	<properties>
+		<cpd.excludeFromFailureFile>${project.basedir}/cpd-excludes.csv</cpd.excludeFromFailureFile>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
