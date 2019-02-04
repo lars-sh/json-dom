@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
-	<artifactId>json-dom</artifactId>
-	<version>0.9.1-SNAPSHOT</version>
-
-	<name>JSON DOM</name>
-	<description>A DOM implementation for JSON. While DOM is widely used for XML structured data, it can be useful for JSON data, too. These classes wrap generic JSON elements to fit the DOM interfaces.</description>
-	<url>https://github.com/lars-sh/json-dom</url>
 
 	<parent>
 		<groupId>de.lars-sh</groupId>
@@ -17,6 +8,12 @@
 		<version>0.9.2-SNAPSHOT</version>
 	</parent>
 
+	<artifactId>json-dom</artifactId>
+	<version>0.9.1-SNAPSHOT</version>
+
+	<name>JSON DOM</name>
+	<description>A DOM implementation for JSON. While DOM is widely used for XML structured data, it can be useful for JSON data, too. These classes wrap generic JSON elements to fit the DOM interfaces.</description>
+	<url>https://github.com/lars-sh/json-dom</url>
 	<licenses>
 		<license>
 			<name>MIT License</name>
@@ -37,12 +34,10 @@
 		<developerConnection>scm:git:git@github.com:lars-sh/json-dom.git</developerConnection>
 		<url>https://github.com/lars-sh/json-dom</url>
 	</scm>
-
 	<issueManagement>
 		<system>GitHub Issues</system>
 		<url>https://github.com/lars-sh/json-dom/issues</url>
 	</issueManagement>
-
 	<ciManagement>
 		<system>Travis</system>
 		<url>https://travis-ci.org/lars-sh/json-dom</url>
