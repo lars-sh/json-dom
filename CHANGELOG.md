@@ -7,8 +7,8 @@ All notable changes to this project will be documented in this file.
 
 Download at TODO
 
-### Changed
-* TODO
+### Added
+* JSON Processing (aka JSR-353) implementation of JsonDomValue
 
 <a name="0.9.0"></a>
 
