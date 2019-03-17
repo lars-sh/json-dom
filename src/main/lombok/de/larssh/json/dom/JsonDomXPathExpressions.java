@@ -8,6 +8,7 @@ import java.util.Optional;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 
+import de.larssh.json.dom.values.JsonDomValue;
 import de.larssh.utils.dom.XPathExpressions;
 import lombok.experimental.UtilityClass;
 

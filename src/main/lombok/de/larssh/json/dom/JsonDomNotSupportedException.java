@@ -2,8 +2,6 @@ package de.larssh.json.dom;
 
 import org.w3c.dom.DOMException;
 
-import lombok.ToString;
-
 /**
  * Thrown to indicate that JSON DOM does not support a particular DOM feature.
  */

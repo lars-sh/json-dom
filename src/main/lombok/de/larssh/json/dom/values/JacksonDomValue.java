@@ -1,13 +1,16 @@
-package de.larssh.json.dom;
+package de.larssh.json.dom.values;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.Collections;
 
 import org.w3c.dom.DOMException;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeType;
 
+import de.larssh.json.dom.JsonDomType;
+import de.larssh.json.dom.children.JsonDomArrayChildren;
+import de.larssh.json.dom.children.JsonDomChildren;
+import de.larssh.json.dom.children.JsonDomObjectChildren;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.Nullable;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
@@ -33,22 +36,15 @@ public class JacksonDomValue implements JsonDomValue<JsonNode> {
 	/** {@inheritDoc} */
 	@NonNull
 	@Override
-	@SuppressFBWarnings("STT_TOSTRING_MAP_KEYING")
-	public Map<String, JacksonDomValue> getChildren() {
-		final Map<String, JacksonDomValue> children = new LinkedHashMap<>();
+	public JsonDomChildren<JacksonDomValue> getChildren() {
 		final JsonNode node = getJsonElement();
 		if (node.isArray()) {
-			int index = 0;
-			for (final JsonNode child : node) {
-				children.put(JsonDomElement.ARRAY_ITEM_NODE_NAME_PREFIX + Integer.toString(index),
-						new JacksonDomValue(child));
-				index += 1;
-			}
-		} else if (node.isObject()) {
-			node.fields()
-					.forEachRemaining(entry -> children.put(entry.getKey(), new JacksonDomValue(entry.getValue())));
+			return new JsonDomArrayChildren<>(node.size(), node, JacksonDomValue::new);
 		}
-		return children;
+		if (node.isObject()) {
+			return new JsonDomObjectChildren<>(node.fields(), JacksonDomValue::new);
+		}
+		return Collections::emptySet;
 	}
 
 	/** {@inheritDoc} */

@@ -1,14 +1,18 @@
-package de.larssh.json.dom;
+package de.larssh.json.dom.values;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.Collections;
 
+import javax.json.JsonArray;
 import javax.json.JsonString;
 import javax.json.JsonValue;
 import javax.json.JsonValue.ValueType;
 
 import org.w3c.dom.DOMException;
 
+import de.larssh.json.dom.JsonDomType;
+import de.larssh.json.dom.children.JsonDomArrayChildren;
+import de.larssh.json.dom.children.JsonDomChildren;
+import de.larssh.json.dom.children.JsonDomObjectChildren;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.Nullable;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
@@ -35,22 +39,17 @@ public class JsonProcessingDomValue implements JsonDomValue<JsonValue> {
 	/** {@inheritDoc} */
 	@NonNull
 	@Override
-	@SuppressFBWarnings("STT_TOSTRING_MAP_KEYING")
-	public Map<String, JsonProcessingDomValue> getChildren() {
-		final Map<String, JsonProcessingDomValue> children = new LinkedHashMap<>();
+	public JsonDomChildren<JsonProcessingDomValue> getChildren() {
 		final JsonValue value = getJsonElement();
 		final ValueType valueType = value.getValueType();
 		if (valueType == ValueType.ARRAY) {
-			int index = 0;
-			for (final JsonValue child : value.asJsonArray()) {
-				children.put(JsonDomElement.ARRAY_ITEM_NODE_NAME_PREFIX + Integer.toString(index),
-						new JsonProcessingDomValue(child));
-				index += 1;
-			}
-		} else if (valueType == ValueType.OBJECT) {
-			value.asJsonObject().forEach((key, child) -> children.put(key, new JsonProcessingDomValue(child)));
+			final JsonArray array = value.asJsonArray();
+			return new JsonDomArrayChildren<>(array.size(), array, JsonProcessingDomValue::new);
 		}
-		return children;
+		if (valueType == ValueType.OBJECT) {
+			return new JsonDomObjectChildren<>(value.asJsonObject(), JsonProcessingDomValue::new);
+		}
+		return Collections::emptySet;
 	}
 
 	/** {@inheritDoc} */

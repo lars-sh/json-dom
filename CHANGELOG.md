@@ -10,6 +10,10 @@ Download at TODO
 ### Added
 * JSON Processing (aka JSR-353) implementation of JsonDomValue
 
+### Changed
+* Moved JsonDomValue into its own package
+* Updated signature of JsonDomValue.getChildren()
+
 <a name="0.9.0"></a>
 
 ## [0.9.0](https://github.com/lars-sh/json-dom/commit/56d9c1bf3e529a15c9a082ce18c76f608fd1a2db) (2018-12-13)

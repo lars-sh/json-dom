@@ -1,6 +1,7 @@
-package de.larssh.json.dom;
+package de.larssh.json.dom.values;
 
-import java.util.Map;
+import de.larssh.json.dom.JsonDomType;
+import de.larssh.json.dom.children.JsonDomChildren;
 
 /**
  * Generic wrapper to keep JSON implementation specifics off of JSON DOM.
@@ -18,7 +19,7 @@ public interface JsonDomValue<T> {
 	 *
 	 * @return map of child node names and their value.
 	 */
-	Map<String, ? extends JsonDomValue<T>> getChildren();
+	JsonDomChildren<? extends JsonDomValue<T>> getChildren();
 
 	/**
 	 * Returns the implementation specific JSON element.

@@ -18,6 +18,7 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Element;
 import org.w3c.dom.TypeInfo;
 
+import de.larssh.json.dom.values.JsonDomValue;
 import de.larssh.utils.Finals;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.Nullable;

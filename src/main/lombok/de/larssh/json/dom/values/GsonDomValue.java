@@ -1,14 +1,17 @@
-package de.larssh.json.dom;
+package de.larssh.json.dom.values;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Map.Entry;
+import java.util.Collections;
 
 import org.w3c.dom.DOMException;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;
 
+import de.larssh.json.dom.JsonDomType;
+import de.larssh.json.dom.children.JsonDomArrayChildren;
+import de.larssh.json.dom.children.JsonDomChildren;
+import de.larssh.json.dom.children.JsonDomObjectChildren;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.Nullable;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
@@ -34,23 +37,16 @@ public class GsonDomValue implements JsonDomValue<JsonElement> {
 	/** {@inheritDoc} */
 	@NonNull
 	@Override
-	@SuppressFBWarnings("STT_TOSTRING_MAP_KEYING")
-	public Map<String, GsonDomValue> getChildren() {
-		final Map<String, GsonDomValue> children = new LinkedHashMap<>();
+	public JsonDomChildren<GsonDomValue> getChildren() {
 		final JsonElement element = getJsonElement();
 		if (element.isJsonArray()) {
-			int index = 0;
-			for (final JsonElement child : element.getAsJsonArray()) {
-				children.put(JsonDomElement.ARRAY_ITEM_NODE_NAME_PREFIX + Integer.toString(index),
-						new GsonDomValue(child));
-				index += 1;
-			}
-		} else if (element.isJsonObject()) {
-			for (final Entry<String, JsonElement> entry : element.getAsJsonObject().entrySet()) {
-				children.put(entry.getKey(), new GsonDomValue(entry.getValue()));
-			}
+			final JsonArray array = element.getAsJsonArray();
+			return new JsonDomArrayChildren<>(array.size(), array, GsonDomValue::new);
 		}
-		return children;
+		if (element.isJsonObject()) {
+			return new JsonDomObjectChildren<>(element.getAsJsonObject().entrySet(), GsonDomValue::new);
+		}
+		return Collections::emptySet;
 	}
 
 	/** {@inheritDoc} */

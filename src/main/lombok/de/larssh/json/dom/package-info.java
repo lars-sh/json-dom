@@ -8,8 +8,8 @@
  *
  * <p>
  * JSON DOM does not come with its own JSON parser or JSON element objects.
- * Instead {@link JsonDomValue} is made up to integrate existing parsers. The
- * JSON DOM is not modifiable!
+ * Instead {@link de.larssh.json.dom.values.JsonDomValue} is made up to
+ * integrate existing parsers. The JSON DOM is not modifiable!
  *
  * <p>
  * <b>Model:</b> Each JSON element is represented by a DOM element. Those DOM
