@@ -3,11 +3,11 @@ package de.larssh.json.dom;
 import static java.util.Collections.unmodifiableList;
 
 import java.util.List;
-import java.util.Objects;
 
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import de.larssh.utils.Nullables;
 import de.larssh.utils.collection.ProxiedList;
 import edu.umd.cs.findbugs.annotations.NonNull;
 
@@ -37,6 +37,6 @@ public class JsonDomNodeList<E extends Node> extends ProxiedList<E> implements N
 	@NonNull
 	@Override
 	public E item(final int index) {
-		return Objects.requireNonNull(get(index));
+		return Nullables.orElseThrow(get(index));
 	}
 }

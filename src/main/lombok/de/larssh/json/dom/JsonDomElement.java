@@ -8,7 +8,6 @@ import static java.util.stream.Collectors.toList;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -20,6 +19,7 @@ import org.w3c.dom.TypeInfo;
 
 import de.larssh.json.dom.values.JsonDomValue;
 import de.larssh.utils.Finals;
+import de.larssh.utils.Nullables;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.Nullable;
 import lombok.EqualsAndHashCode;
@@ -96,7 +96,7 @@ public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 	@Nullable
 	@Override
 	public JsonDomAttribute<T> getAttributeNode(@Nullable final String name) {
-		return Objects.requireNonNull(getAttributes()).get(name);
+		return Nullables.orElseThrow(getAttributes()).get(name);
 	}
 
 	/** {@inheritDoc} */
@@ -166,7 +166,7 @@ public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 	@Nullable
 	@Override
 	public JsonDomElement<T> getNextSibling() {
-		final JsonDomNode<T> parentNode = Objects.requireNonNull(getParentNode());
+		final JsonDomNode<T> parentNode = Nullables.orElseThrow(getParentNode());
 		final JsonDomNodeList<JsonDomElement<T>> children = parentNode.getChildNodes();
 		final int index = children.indexOf(this);
 		return index + 1 < children.size() ? children.get(index + 1) : null;
@@ -189,14 +189,14 @@ public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 	@NonNull
 	@Override
 	public JsonDomDocument<T> getOwnerDocument() {
-		return Objects.requireNonNull(getParentNode()).getOwnerDocument();
+		return Nullables.orElseThrow(getParentNode()).getOwnerDocument();
 	}
 
 	/** {@inheritDoc} */
 	@Nullable
 	@Override
 	public JsonDomElement<T> getPreviousSibling() {
-		final JsonDomNode<T> parentNode = Objects.requireNonNull(getParentNode());
+		final JsonDomNode<T> parentNode = Nullables.orElseThrow(getParentNode());
 		final JsonDomNodeList<JsonDomElement<T>> children = parentNode.getChildNodes();
 		final int index = children.indexOf(this);
 		return index > 0 ? children.get(index - 1) : null;
@@ -226,7 +226,7 @@ public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 	/** {@inheritDoc} */
 	@Override
 	public boolean hasAttribute(@Nullable final String name) {
-		return Objects.requireNonNull(getAttributes()).containsKey(name);
+		return Nullables.orElseThrow(getAttributes()).containsKey(name);
 	}
 
 	/** {@inheritDoc} */

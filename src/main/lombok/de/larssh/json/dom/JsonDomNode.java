@@ -1,7 +1,5 @@
 package de.larssh.json.dom;
 
-import java.util.Optional;
-
 import org.w3c.dom.Node;
 import org.w3c.dom.UserDataHandler;
 
@@ -260,6 +258,7 @@ public abstract class JsonDomNode<T> implements Node {
 	@NonNull
 	@Override
 	public String toString() {
-		return Optional.ofNullable(getJsonElement()).map(Object::toString).orElse("undefined");
+		final T value = getJsonElement();
+		return value == null ? "undefined" : value.toString();
 	}
 }

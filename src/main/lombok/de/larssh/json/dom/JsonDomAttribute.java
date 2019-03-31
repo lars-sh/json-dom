@@ -3,13 +3,13 @@ package de.larssh.json.dom;
 import static java.util.Collections.emptyList;
 
 import java.util.Iterator;
-import java.util.Objects;
 import java.util.function.Supplier;
 
 import org.w3c.dom.Attr;
 import org.w3c.dom.Node;
 import org.w3c.dom.TypeInfo;
 
+import de.larssh.utils.Nullables;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.Nullable;
 import lombok.EqualsAndHashCode;
@@ -66,8 +66,7 @@ public class JsonDomAttribute<T> extends JsonDomNode<T> implements Attr {
 	@Nullable
 	@Override
 	public T getJsonElement() {
-		final JsonDomNode<T> parentNode = Objects.requireNonNull(getParentNode());
-		return parentNode.getJsonElement();
+		return Nullables.orElseThrow(getParentNode()).getJsonElement();
 	}
 
 	/** {@inheritDoc} */
@@ -81,8 +80,8 @@ public class JsonDomAttribute<T> extends JsonDomNode<T> implements Attr {
 	@Nullable
 	@Override
 	public JsonDomAttribute<T> getNextSibling() {
-		final JsonDomNode<T> parentNode = Objects.requireNonNull(getParentNode());
-		final JsonDomNamedNodeMap<JsonDomAttribute<T>> attributes = Objects.requireNonNull(parentNode.getAttributes());
+		final JsonDomNode<T> parentNode = Nullables.orElseThrow(getParentNode());
+		final JsonDomNamedNodeMap<JsonDomAttribute<T>> attributes = Nullables.orElseThrow(parentNode.getAttributes());
 		final Iterator<JsonDomAttribute<T>> iterator = attributes.values().iterator();
 
 		while (iterator.next() != this) {
@@ -108,15 +107,14 @@ public class JsonDomAttribute<T> extends JsonDomNode<T> implements Attr {
 	@NonNull
 	@Override
 	public JsonDomDocument<T> getOwnerDocument() {
-		final JsonDomNode<T> parentNode = Objects.requireNonNull(getParentNode());
-		return parentNode.getOwnerDocument();
+		return Nullables.orElseThrow(getParentNode()).getOwnerDocument();
 	}
 
 	/** {@inheritDoc} */
 	@NonNull
 	@Override
 	public JsonDomElement<T> getOwnerElement() {
-		return (JsonDomElement<T>) Objects.requireNonNull(getParentNode());
+		return (JsonDomElement<T>) Nullables.orElseThrow(getParentNode());
 	}
 
 	/** {@inheritDoc} */
@@ -126,8 +124,8 @@ public class JsonDomAttribute<T> extends JsonDomNode<T> implements Attr {
 		JsonDomAttribute<T> previousSibling = null;
 		JsonDomAttribute<T> currentSibling = null;
 
-		final JsonDomNode<T> parentNode = Objects.requireNonNull(getParentNode());
-		final JsonDomNamedNodeMap<JsonDomAttribute<T>> attributes = Objects.requireNonNull(parentNode.getAttributes());
+		final JsonDomNode<T> parentNode = Nullables.orElseThrow(getParentNode());
+		final JsonDomNamedNodeMap<JsonDomAttribute<T>> attributes = Nullables.orElseThrow(parentNode.getAttributes());
 		final Iterator<JsonDomAttribute<T>> iterator = attributes.values().iterator();
 
 		while (currentSibling != this) {
