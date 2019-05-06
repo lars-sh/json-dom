@@ -5,11 +5,11 @@
 	<parent>
 		<groupId>de.lars-sh</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.9.2-SNAPSHOT</version>
+		<version>0.9.2</version>
 	</parent>
 
 	<artifactId>json-dom</artifactId>
-	<version>0.9.1-SNAPSHOT</version>
+	<version>0.9.1</version>
 
 	<name>JSON DOM</name>
 	<description>A DOM implementation for JSON. While DOM is widely used for XML structured data, it can be useful for JSON data, too. These classes wrap generic JSON elements to fit the DOM interfaces.</description>

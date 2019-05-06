@@ -3,9 +3,9 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.9.1"></a>
 
-## [0.9.1-SNAPSHOT](https://github.com/lars-sh/json-dom/compare/56d9c1bf3e529a15c9a082ce18c76f608fd1a2db...master)
+## [0.9.1](https://github.com/lars-sh/json-dom/compare/56d9c1bf3e529a15c9a082ce18c76f608fd1a2db...master) (2019-05-06)
 
-Download at TODO
+Download at [Maven Search](https://search.maven.org/artifact/de.lars-sh/json-dom/0.9.1/jar)
 
 ### Added
 * JSON Processing (aka JSR-353) implementation of JsonDomValue
