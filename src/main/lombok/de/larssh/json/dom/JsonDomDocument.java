@@ -20,7 +20,6 @@ import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.Nullable;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.ToString;
 
 /**
  * JSON DOM implementation of {@link Document}.
@@ -28,7 +27,6 @@ import lombok.ToString;
  * @param <T> implementation specific JSON element type
  */
 @Getter
-@ToString
 @EqualsAndHashCode(callSuper = true, onParam_ = { @Nullable })
 public class JsonDomDocument<T> extends JsonDomNode<T> implements Document {
 	/**
