@@ -68,4 +68,10 @@ public class JsonDomObjectChildren<T extends JsonDomValue<?>> extends LinkedHash
 			put(entry.getKey(), jsonDomValueMapper.apply(entry.getValue()));
 		}
 	}
+
+	/** {@inheritDoc} */
+	@Override
+	public Set<Entry<String, T>> entrySet() {
+		return super.entrySet();
+	}
 }
