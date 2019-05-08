@@ -22,7 +22,7 @@ public class JsonDomObjectChildren<T extends JsonDomValue<?>> extends LinkedHash
 	 * Constructor that allows adding children while applying
 	 * {@code jsonDomValueMapper} to each child's value before.
 	 *
-	 * @param                    <V> type of children before mapping to a
+	 * @param <V>                type of children before mapping to a
 	 *                           {@link JsonDomValue} type
 	 * @param children           children to apply {@code jsonDomValueMapper} and
 	 *                           add
@@ -37,7 +37,7 @@ public class JsonDomObjectChildren<T extends JsonDomValue<?>> extends LinkedHash
 	 * Constructor that allows adding children while applying
 	 * {@code jsonDomValueMapper} to each child's value before.
 	 *
-	 * @param                    <V> type of children before mapping to a
+	 * @param <V>                type of children before mapping to a
 	 *                           {@link JsonDomValue} type
 	 * @param children           children to apply {@code jsonDomValueMapper} and
 	 *                           add
@@ -52,7 +52,7 @@ public class JsonDomObjectChildren<T extends JsonDomValue<?>> extends LinkedHash
 	 * Constructor that allows adding children while applying
 	 * {@code jsonDomValueMapper} to each child's value before.
 	 *
-	 * @param                    <V> type of children before mapping to a
+	 * @param <V>                type of children before mapping to a
 	 *                           {@link JsonDomValue} type
 	 * @param children           children to apply {@code jsonDomValueMapper} and
 	 *                           add
@@ -61,6 +61,8 @@ public class JsonDomObjectChildren<T extends JsonDomValue<?>> extends LinkedHash
 	 */
 	public <V> JsonDomObjectChildren(final Iterator<Entry<String, V>> children,
 			final Function<V, T> jsonDomValueMapper) {
+		super();
+
 		while (children.hasNext()) {
 			final Entry<String, V> entry = children.next();
 			put(entry.getKey(), jsonDomValueMapper.apply(entry.getValue()));
