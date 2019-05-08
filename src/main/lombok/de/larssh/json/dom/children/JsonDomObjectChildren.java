@@ -71,7 +71,9 @@ public class JsonDomObjectChildren<T extends JsonDomValue<?>> extends LinkedHash
 
 	/** {@inheritDoc} */
 	@Override
+	@SuppressWarnings("PMD.UselessOverridingMethod")
 	public Set<Entry<String, T>> entrySet() {
+		// http://fb-contrib.sourceforge.net/bugdescriptions.html#SCII_SPOILED_CHILD_INTERFACE_IMPLEMENTOR
 		return super.entrySet();
 	}
 }
