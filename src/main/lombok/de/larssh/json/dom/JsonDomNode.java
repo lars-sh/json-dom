@@ -61,6 +61,7 @@ public abstract class JsonDomNode<T> implements Node {
 	/** {@inheritDoc} */
 	@Nullable
 	@Override
+	@SuppressWarnings("PMD.EmptyMethodInAbstractClassShouldBeAbstract")
 	public String getBaseURI() {
 		return null;
 	}
@@ -73,6 +74,7 @@ public abstract class JsonDomNode<T> implements Node {
 	/** {@inheritDoc} */
 	@Nullable
 	@Override
+	@SuppressWarnings("PMD.EmptyMethodInAbstractClassShouldBeAbstract")
 	public Object getFeature(@Nullable @SuppressWarnings("unused") final String feature,
 			@Nullable @SuppressWarnings("unused") final String version) {
 		return null;
@@ -105,6 +107,7 @@ public abstract class JsonDomNode<T> implements Node {
 	/** {@inheritDoc} */
 	@Nullable
 	@Override
+	@SuppressWarnings("PMD.EmptyMethodInAbstractClassShouldBeAbstract")
 	public String getLocalName() {
 		return null;
 	}
@@ -112,6 +115,7 @@ public abstract class JsonDomNode<T> implements Node {
 	/** {@inheritDoc} */
 	@Nullable
 	@Override
+	@SuppressWarnings("PMD.EmptyMethodInAbstractClassShouldBeAbstract")
 	public String getNamespaceURI() {
 		return null;
 	}
@@ -129,6 +133,7 @@ public abstract class JsonDomNode<T> implements Node {
 	/** {@inheritDoc} */
 	@Nullable
 	@Override
+	@SuppressWarnings("PMD.EmptyMethodInAbstractClassShouldBeAbstract")
 	public String getPrefix() {
 		return null;
 	}
@@ -141,6 +146,7 @@ public abstract class JsonDomNode<T> implements Node {
 	/** {@inheritDoc} */
 	@Nullable
 	@Override
+	@SuppressWarnings("PMD.EmptyMethodInAbstractClassShouldBeAbstract")
 	public Object getUserData(@Nullable @SuppressWarnings("unused") final String key) {
 		return null;
 	}
@@ -194,6 +200,7 @@ public abstract class JsonDomNode<T> implements Node {
 	/** {@inheritDoc} */
 	@Nullable
 	@Override
+	@SuppressWarnings("PMD.EmptyMethodInAbstractClassShouldBeAbstract")
 	public String lookupNamespaceURI(@Nullable @SuppressWarnings("unused") final String prefix) {
 		return null;
 	}
@@ -201,12 +208,14 @@ public abstract class JsonDomNode<T> implements Node {
 	/** {@inheritDoc} */
 	@Nullable
 	@Override
+	@SuppressWarnings("PMD.EmptyMethodInAbstractClassShouldBeAbstract")
 	public String lookupPrefix(@Nullable @SuppressWarnings("unused") final String namespaceURI) {
 		return null;
 	}
 
 	/** {@inheritDoc} */
 	@Override
+	@SuppressWarnings("PMD.EmptyMethodInAbstractClassShouldBeAbstract")
 	public void normalize() {
 		// do nothing
 	}

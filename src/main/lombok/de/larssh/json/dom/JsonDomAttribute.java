@@ -82,10 +82,12 @@ public class JsonDomAttribute<T> extends JsonDomNode<T> implements Attr {
 		final JsonDomNamedNodeMap<JsonDomAttribute<T>> attributes = Nullables.orElseThrow(parentNode.getAttributes());
 		final Iterator<JsonDomAttribute<T>> iterator = attributes.values().iterator();
 
-		while (iterator.next() != this) {
-			// do nothing but iterating
+		while (iterator.hasNext()) {
+			if (iterator.next() == this) {
+				return iterator.hasNext() ? iterator.next() : null;
+			}
 		}
-		return iterator.hasNext() ? iterator.next() : null;
+		return null;
 	}
 
 	/** {@inheritDoc} */

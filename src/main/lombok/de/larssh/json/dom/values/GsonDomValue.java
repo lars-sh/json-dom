@@ -62,6 +62,7 @@ public class GsonDomValue implements JsonDomValue<JsonElement> {
 	/** {@inheritDoc} */
 	@NonNull
 	@Override
+	@SuppressWarnings("PMD.CyclomaticComplexity")
 	@SuppressFBWarnings(value = "WEM_WEAK_EXCEPTION_MESSAGING",
 			justification = "there is no more information about element and primitive")
 	public JsonDomType getType() {
