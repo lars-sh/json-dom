@@ -61,8 +61,6 @@ public class JsonDomObjectChildren<T extends JsonDomValue<?>> extends LinkedHash
 	 */
 	public <V> JsonDomObjectChildren(final Iterator<Entry<String, V>> children,
 			final Function<V, T> jsonDomValueMapper) {
-		super();
-
 		while (children.hasNext()) {
 			final Entry<String, V> entry = children.next();
 			put(entry.getKey(), jsonDomValueMapper.apply(entry.getValue()));
