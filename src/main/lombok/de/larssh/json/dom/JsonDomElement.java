@@ -11,10 +11,9 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-import javax.xml.soap.Node;
-
 import org.w3c.dom.Attr;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.TypeInfo;
 
 import de.larssh.json.dom.values.JsonDomValue;
