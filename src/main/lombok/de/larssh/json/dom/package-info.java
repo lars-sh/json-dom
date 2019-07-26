@@ -28,7 +28,7 @@
  * implementation, developers might be familiar with the XML DOM. Therefore the
  * following snippet demonstrates a simple JSON document represented as XML as
  * it is implemented in JSON DOM.
- * <table summary="Example">
+ * <table>
  * <tr>
  * <th>JSON</th>
  * <th>XML example</th>
