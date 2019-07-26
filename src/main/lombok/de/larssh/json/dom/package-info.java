@@ -29,6 +29,7 @@
  * following snippet demonstrates a simple JSON document represented as XML as
  * it is implemented in JSON DOM.
  * <table>
+ * <caption>Example</caption>
  * <tr>
  * <th>JSON</th>
  * <th>XML example</th>
