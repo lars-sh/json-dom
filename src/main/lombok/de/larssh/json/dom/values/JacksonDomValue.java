@@ -19,8 +19,9 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 /**
- * Implementation of {@link JsonDomValue} for {@link com.fasterxml.jackson} and
- * its {@link JsonNode}.
+ * Implementation of {@link JsonDomValue} for
+ * <a href="https://github.com/FasterXML/jackson">Jackson</a> and its
+ * {@link JsonNode}.
  */
 @Getter
 @RequiredArgsConstructor
