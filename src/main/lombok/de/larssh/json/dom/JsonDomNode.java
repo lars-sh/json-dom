@@ -69,7 +69,7 @@ public abstract class JsonDomNode<T> implements Node {
 	/** {@inheritDoc} */
 	@NonNull
 	@Override
-	public abstract JsonDomNodeList<JsonDomElement<T>> getChildNodes();
+	public abstract JsonDomNodeList<JsonDomNode<T>> getChildNodes();
 
 	/** {@inheritDoc} */
 	@Nullable
@@ -83,8 +83,8 @@ public abstract class JsonDomNode<T> implements Node {
 	/** {@inheritDoc} */
 	@Nullable
 	@Override
-	public JsonDomElement<T> getFirstChild() {
-		final JsonDomNodeList<JsonDomElement<T>> childNodes = getChildNodes();
+	public JsonDomNode<T> getFirstChild() {
+		final JsonDomNodeList<JsonDomNode<T>> childNodes = getChildNodes();
 		return childNodes.isEmpty() ? null : childNodes.get(0);
 	}
 
@@ -93,14 +93,13 @@ public abstract class JsonDomNode<T> implements Node {
 	 *
 	 * @return implementation specific JSON element
 	 */
-	@Nullable
 	public abstract T getJsonElement();
 
 	/** {@inheritDoc} */
 	@Nullable
 	@Override
-	public JsonDomElement<T> getLastChild() {
-		final JsonDomNodeList<JsonDomElement<T>> childNodes = getChildNodes();
+	public JsonDomNode<T> getLastChild() {
+		final JsonDomNodeList<JsonDomNode<T>> childNodes = getChildNodes();
 		return childNodes.isEmpty() ? null : childNodes.get(childNodes.size() - 1);
 	}
 
@@ -266,7 +265,6 @@ public abstract class JsonDomNode<T> implements Node {
 	@NonNull
 	@Override
 	public String toString() {
-		final T value = getJsonElement();
-		return value == null ? "undefined" : value.toString();
+		return getJsonElement().toString();
 	}
 }

@@ -14,8 +14,7 @@ public interface JsonDomValue<T> {
 	 *
 	 * <p>
 	 * For JSON objects and arrays a map of keys to wrapped values should be
-	 * returned. Keys of JSON arrays follow the scheme {@code "item" + index}. For
-	 * other JSON elements an empty map should be returned.
+	 * returned. For other JSON elements an empty map should be returned.
 	 *
 	 * @return map of child node names and their value.
 	 */

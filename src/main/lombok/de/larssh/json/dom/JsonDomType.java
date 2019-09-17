@@ -12,32 +12,32 @@ public enum JsonDomType {
 	/**
 	 * JSON array
 	 */
-	ARRAY("array"),
+	ARRAY("array", true),
 
 	/**
 	 * JSON boolean
 	 */
-	BOOLEAN("boolean"),
+	BOOLEAN("boolean", false),
 
 	/**
 	 * JSON null
 	 */
-	NULL("null"),
+	NULL("null", false),
 
 	/**
 	 * JSON number
 	 */
-	NUMBER("number"),
+	NUMBER("number", false),
 
 	/**
 	 * JSON object
 	 */
-	OBJECT("object"),
+	OBJECT("object", true),
 
 	/**
 	 * JSON string
 	 */
-	STRING("string");
+	STRING("string", false);
 
 	/**
 	 * String representation of the JSON type
@@ -45,4 +45,12 @@ public enum JsonDomType {
 	 * @return string representation
 	 */
 	String value;
+
+	/**
+	 * Tells if this type is complex. Types are complex if they might contain
+	 * further elements.
+	 *
+	 * @return {@code true} if this is a complex type
+	 */
+	boolean complex;
 }

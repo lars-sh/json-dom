@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 
 Download at [Maven Search](https://search.maven.org/artifact/de.lars-sh/json-dom/0.9.2/jar)
 
-* TODO
+* Modified the DOM structure to be more intuitive
 
 <a name="0.9.1"></a>
 
@@ -16,7 +16,7 @@ Download at [Maven Search](https://search.maven.org/artifact/de.lars-sh/json-dom
 Download at [Maven Search](https://search.maven.org/artifact/de.lars-sh/json-dom/0.9.1/jar)
 
 ### Added
-* JSON Processing (aka JSR-353) implementation of JsonDomValue
+* JSON Processing (aka JSR-374) implementation of JsonDomValue
 
 ### Changed
 * Moved JsonDomValue into its own package

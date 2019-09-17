@@ -23,10 +23,9 @@ public final class JsonDomXPathExpressions {
 	 * optionally returns a JSON element.
 	 *
 	 * <p>
-	 * See package {@link de.larssh.json.dom} for a description of the JSON DOM
-	 * hierarchy.
+	 * See the README.md file for a description of the JSON DOM hierarchy.
 	 *
-	 * @param              <T> implementation specific JSON element type
+	 * @param <T>          implementation specific JSON element type
 	 * @param jsonDomValue the starting context
 	 * @param expression   the XPath expression
 	 * @return evaluation result as optional {@code T}
@@ -43,10 +42,9 @@ public final class JsonDomXPathExpressions {
 	 * a list of JSON elements.
 	 *
 	 * <p>
-	 * See package {@link de.larssh.json.dom} for a description of the JSON DOM
-	 * hierarchy.
+	 * See the README.md file for a description of the JSON DOM hierarchy.
 	 *
-	 * @param              <T> implementation specific JSON element type
+	 * @param <T>          implementation specific JSON element type
 	 * @param jsonDomValue the starting context
 	 * @param expression   the XPath expression
 	 * @return evaluation result as list of {@code T}

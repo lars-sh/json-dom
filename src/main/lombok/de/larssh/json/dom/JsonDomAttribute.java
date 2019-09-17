@@ -13,14 +13,12 @@ import de.larssh.utils.Nullables;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.Nullable;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 
 /**
  * JSON DOM implementation of {@link Attr}.
  *
  * @param <T> implementation specific JSON element type
  */
-@Getter
 @EqualsAndHashCode(callSuper = true, onParam_ = { @Nullable })
 public class JsonDomAttribute<T> extends JsonDomNode<T> implements Attr {
 	/**
@@ -56,12 +54,11 @@ public class JsonDomAttribute<T> extends JsonDomNode<T> implements Attr {
 	/** {@inheritDoc} */
 	@NonNull
 	@Override
-	public JsonDomNodeList<JsonDomElement<T>> getChildNodes() {
+	public JsonDomNodeList<JsonDomNode<T>> getChildNodes() {
 		return new JsonDomNodeList<>(emptyList());
 	}
 
 	/** {@inheritDoc} */
-	@Nullable
 	@Override
 	public T getJsonElement() {
 		return Nullables.orElseThrow(getParentNode()).getJsonElement();
@@ -159,7 +156,7 @@ public class JsonDomAttribute<T> extends JsonDomNode<T> implements Attr {
 	@NonNull
 	@Override
 	public String getValue() {
-		return getValueProvider().get();
+		return valueProvider.get();
 	}
 
 	/** {@inheritDoc} */

@@ -2,6 +2,7 @@ package de.larssh.json.dom;
 
 import static de.larssh.utils.Collectors.toLinkedHashMap;
 import static de.larssh.utils.Finals.constant;
+import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 import static java.util.stream.Collectors.toList;
@@ -33,14 +34,76 @@ import lombok.Getter;
 @EqualsAndHashCode(callSuper = true, onParam_ = { @Nullable })
 public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 	/**
-	 * Prefix for array items node names
+	 * Name of the attribute {@code name}
 	 */
-	public static final String ARRAY_ITEM_NODE_NAME_PREFIX = constant("item");
+	public static final String ATTRIBUTE_NAME = constant("name");
+
+	/**
+	 * Name of the attribute {@code type}
+	 */
+	public static final String ATTRIBUTE_TYPE = constant("type");
 
 	/**
 	 * The special value "*" matches all tags.
 	 */
 	private static final String GET_ELEMENTS_BY_TAG_NAME_WILDCARD = "*";
+
+	// following https://www.w3.org/TR/2006/REC-xml11-20060816/#sec-common-syn
+	private static final String XML_NAME_START_CHARACTERS
+			= ":A-Z_a-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD";
+
+	private static final String XML_NAME_CHARACTERS
+			= XML_NAME_START_CHARACTERS + "-.0-9\u00B7\u0300-\u036F\u203F-\u2040";
+
+	private static String getTagName(final String jsonName) {
+		// Empty
+		if (jsonName.isEmpty()) {
+			return "empty";
+		}
+
+		// Spaces
+		final String trimmedName = jsonName.trim();
+		if (trimmedName.isEmpty()) {
+			return jsonName.length() == 1 ? "whitespace" : "whitespaces";
+		}
+
+		// Numeric
+		if (trimmedName.matches("^\\d+(\\.\\d+)$")) {
+			return 'n' + trimmedName;
+		}
+
+		// Simplified
+		final String simplifiedName
+				= trimmedName.replaceFirst("^[^" + XML_NAME_START_CHARACTERS + "][^" + XML_NAME_CHARACTERS + "]*", "");
+		if (!simplifiedName.isEmpty()) {
+			return simplifiedName.replaceAll("[^" + XML_NAME_CHARACTERS + "]+", "-");
+		}
+
+		// Non-Empty
+		return "non-empty";
+	}
+
+	/**
+	 * Map of attribute names to attribute node
+	 *
+	 * @return map of attribute names to attribute node
+	 */
+	Supplier<JsonDomNamedNodeMap<JsonDomAttribute<T>>> attributes = Finals.lazy(
+			() -> new JsonDomNamedNodeMap<>(asList(new JsonDomAttribute<>(this, ATTRIBUTE_NAME, this::getJsonName),
+					new JsonDomAttribute<>(this, ATTRIBUTE_TYPE, () -> getJsonDomValue().getType().getValue())).stream()
+							.collect(toLinkedHashMap(JsonDomAttribute::getNodeName, Function.identity()))));
+
+	/**
+	 * List of child element nodes
+	 */
+	Supplier<JsonDomNodeList<JsonDomNode<T>>> childNodes
+			= Finals.lazy(() -> new JsonDomNodeList<>(getJsonDomValue().getType().isComplex()
+					? getJsonDomValue().getChildren()
+							.entrySet()
+							.stream()
+							.map(entry -> new JsonDomElement<>(this, entry.getKey(), entry.getValue()))
+							.collect(toList())
+					: singletonList(new JsonDomText<>(this, getJsonDomValue().getTextValue()))));
 
 	/**
 	 * Wrapped JSON element
@@ -49,38 +112,20 @@ public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 	 */
 	JsonDomValue<T> jsonDomValue;
 
-	/**
-	 * List of child element nodes
-	 */
-	Supplier<JsonDomNodeList<JsonDomElement<T>>> childNodes
-			= Finals.lazy(() -> new JsonDomNodeList<>(getJsonDomValue().getChildren()
-					.entrySet()
-					.stream()
-					.map(entry -> new JsonDomElement<>(this, entry.getKey(), entry.getValue()))
-					.collect(toList())));
-
-	/**
-	 * Map of attribute names to attribute node
-	 *
-	 * @return map of attribute names to attribute node
-	 */
-	Supplier<JsonDomNamedNodeMap<JsonDomAttribute<T>>> attributes
-			= Finals.lazy(() -> new JsonDomNamedNodeMap<>(singletonList(new JsonDomAttribute<>(this,
-					getJsonDomValue().getType().getValue(),
-					getJsonDomValue()::getTextValue)).stream()
-							.collect(toLinkedHashMap(JsonDomAttribute::getNodeName, Function.identity()))));
+	String jsonName;
 
 	/**
 	 * Constructor of {@link JsonDomElement}.
 	 *
 	 * @param parentNode   parent node
-	 * @param nodeName     node name
+	 * @param jsonName     JSON node name
 	 * @param jsonDomValue wrapped JSON element
 	 */
-	public JsonDomElement(final JsonDomNode<T> parentNode, final String nodeName, final JsonDomValue<T> jsonDomValue) {
-		super(parentNode, nodeName);
+	public JsonDomElement(final JsonDomNode<T> parentNode, final String jsonName, final JsonDomValue<T> jsonDomValue) {
+		super(parentNode, getTagName(jsonName));
 
 		this.jsonDomValue = jsonDomValue;
+		this.jsonName = jsonName;
 	}
 
 	/** {@inheritDoc} */
@@ -123,7 +168,7 @@ public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 	/** {@inheritDoc} */
 	@NonNull
 	@Override
-	public JsonDomNodeList<JsonDomElement<T>> getChildNodes() {
+	public JsonDomNodeList<JsonDomNode<T>> getChildNodes() {
 		return childNodes.get();
 	}
 
@@ -136,11 +181,14 @@ public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 		}
 
 		final List<JsonDomElement<T>> list = new ArrayList<>();
-		for (final JsonDomElement<T> child : getChildNodes()) {
-			if (name.equals(child.getTagName()) || GET_ELEMENTS_BY_TAG_NAME_WILDCARD.equals(name)) {
-				list.add(child);
+		for (final JsonDomNode<T> child : getChildNodes()) {
+			if (child instanceof JsonDomElement) {
+				final JsonDomElement<T> childElement = (JsonDomElement<T>) child;
+				if (name.equals(childElement.getTagName()) || GET_ELEMENTS_BY_TAG_NAME_WILDCARD.equals(name)) {
+					list.add(childElement);
+				}
+				list.addAll(childElement.getElementsByTagName(name));
 			}
-			list.addAll(child.getElementsByTagName(name));
 		}
 		return new JsonDomNodeList<>(list);
 	}
@@ -155,7 +203,6 @@ public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 	}
 
 	/** {@inheritDoc} */
-	@Nullable
 	@Override
 	public T getJsonElement() {
 		return getJsonDomValue().getJsonElement();
@@ -166,9 +213,9 @@ public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 	@Override
 	public JsonDomElement<T> getNextSibling() {
 		final JsonDomNode<T> parentNode = Nullables.orElseThrow(getParentNode());
-		final JsonDomNodeList<JsonDomElement<T>> children = parentNode.getChildNodes();
+		final JsonDomNodeList<JsonDomNode<T>> children = parentNode.getChildNodes();
 		final int index = children.indexOf(this);
-		return index + 1 < children.size() ? children.get(index + 1) : null;
+		return index + 1 < children.size() ? (JsonDomElement<T>) children.get(index + 1) : null;
 	}
 
 	/** {@inheritDoc} */
@@ -196,9 +243,9 @@ public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 	@Override
 	public JsonDomElement<T> getPreviousSibling() {
 		final JsonDomNode<T> parentNode = Nullables.orElseThrow(getParentNode());
-		final JsonDomNodeList<JsonDomElement<T>> children = parentNode.getChildNodes();
+		final JsonDomNodeList<JsonDomNode<T>> children = parentNode.getChildNodes();
 		final int index = children.indexOf(this);
-		return index > 0 ? children.get(index - 1) : null;
+		return index > 0 ? (JsonDomElement<T>) children.get(index - 1) : null;
 	}
 
 	/** {@inheritDoc} */

@@ -9,7 +9,6 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 
-import de.larssh.json.dom.JsonDomElement;
 import de.larssh.json.dom.values.JsonDomValue;
 import lombok.NoArgsConstructor;
 
@@ -26,7 +25,7 @@ public class JsonDomArrayChildren<T extends JsonDomValue<?>> extends ArrayList<T
 	 * Constructor that allows adding an initial amount of children while applying
 	 * {@code jsonDomValueMapper} before.
 	 *
-	 * @param                    <V> type of children before mapping to a
+	 * @param <V>                type of children before mapping to a
 	 *                           {@link JsonDomValue} type
 	 * @param initialCapacity    hint on the number of children to add
 	 * @param children           children to apply {@code jsonDomValueMapper} and
@@ -47,13 +46,8 @@ public class JsonDomArrayChildren<T extends JsonDomValue<?>> extends ArrayList<T
 	/** {@inheritDoc} */
 	@Override
 	public Set<Entry<String, T>> entrySet() {
-		final AtomicInteger index = new AtomicInteger(1);
-		return stream()
-				.collect(
-						toLinkedHashMap(
-								element -> JsonDomElement.ARRAY_ITEM_NODE_NAME_PREFIX
-										+ Integer.toString(index.getAndIncrement()),
-								identity()))
+		final AtomicInteger index = new AtomicInteger(0);
+		return stream().collect(toLinkedHashMap(element -> Integer.toString(index.getAndIncrement()), identity()))
 				.entrySet();
 	}
 }

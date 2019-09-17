@@ -142,7 +142,7 @@ public class JsonDomDocument<T> extends JsonDomNode<T> implements Document {
 	/** {@inheritDoc} */
 	@NonNull
 	@Override
-	public JsonDomNodeList<JsonDomElement<T>> getChildNodes() {
+	public JsonDomNodeList<JsonDomNode<T>> getChildNodes() {
 		return new JsonDomNodeList<>(singletonList(getDocumentElement()));
 	}
 
@@ -205,7 +205,6 @@ public class JsonDomDocument<T> extends JsonDomNode<T> implements Document {
 	}
 
 	/** {@inheritDoc} */
-	@Nullable
 	@Override
 	public T getJsonElement() {
 		return getDocumentElement().getJsonElement();

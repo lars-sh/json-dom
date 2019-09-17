@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 
 /**
  * Implementation of {@link JsonDomValue} for JSON Processing (aka
- * <a href="https://jcp.org/en/jsr/detail?id=353">JSR-353</a>) and its
+ * <a href="https://jcp.org/en/jsr/detail?id=374">JSR-374</a>) and its
  * {@link JsonValue}.
  */
 @Getter
