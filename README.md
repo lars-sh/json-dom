@@ -189,7 +189,7 @@ The interface `JsonDomValue` is used to wrap elements as JSON DOM compatible val
 Working with your custom JSON DOM value implementation works similar to the above implementations.
 
 ## Quick and Dirty
-The following code snippets might help to either get started with JSON DOM.
+The following code snippets might help to either get started with JSON DOM or debugging DOM structures.
 
 ### Parse JSON with Jackson
 
@@ -215,7 +215,7 @@ The following code snippets might help to either get started with JSON DOM.
 		final Transformer transformer = transformerFactory.newTransformer();
 		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 	
-		final StringWriter writer = new StringWriter();
+		final Writer writer = new StringWriter();
 		transformer.transform(new DOMSource(node), new StreamResult(writer));
 		return writer.toString();
 	}
