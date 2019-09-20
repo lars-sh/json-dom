@@ -27,9 +27,7 @@ Each DOM element contains the following attributes:
 * the JSON elements `type` (one of `array`, `boolean`, `null`, `number`, `object`, `string`)
 
 ### Node Names
-While transforming a DOM to a XML representation JSON object keys are transformed to XML tag names. And while JSON object keys can contain any value XML tag names cannot.
-
-Therefore keys that are invalid XML tag names are replaced inside JSON DOM. The attribute `name` still contains the original JSON object key.
+The node names inside a JSON DOM are compatible with the XML standard. Therefore keys that are invalid XML tag names are replaced inside JSON DOM. The attribute `name` still contains the original JSON object key.
 
 ### Example
 JSON DOM does not mean converting to XML, but that might be one case. And as most developers are familiar with XML DOM already the following snippet demonstrates a simple JSON document and how it looks alike in XML notation when using JSON DOM.

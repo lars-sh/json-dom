@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.regex.Pattern;
 
 import org.w3c.dom.Attr;
 import org.w3c.dom.Element;
@@ -20,6 +21,8 @@ import org.w3c.dom.TypeInfo;
 import de.larssh.json.dom.values.JsonDomValue;
 import de.larssh.utils.Finals;
 import de.larssh.utils.Nullables;
+import de.larssh.utils.text.Patterns;
+import de.larssh.utils.text.Strings;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.Nullable;
 import lombok.EqualsAndHashCode;
@@ -48,35 +51,76 @@ public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 	 */
 	private static final String GET_ELEMENTS_BY_TAG_NAME_WILDCARD = "*";
 
-	// following https://www.w3.org/TR/2006/REC-xml11-20060816/#sec-common-syn
+	/**
+	 * Regex character class expression describing the first character of an XML
+	 * name following
+	 * <a href="https://www.w3.org/TR/2006/REC-xml11-20060816/#sec-common-syn">the
+	 * XML 1.1 standard</a>.
+	 */
+	@SuppressWarnings("checkstyle:AvoidEscapedUnicodeCharacters")
 	private static final String XML_NAME_START_CHARACTERS
 			= ":A-Z_a-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD";
 
+	/**
+	 * Regex character class expression describing the second and following
+	 * characters of an XML name following
+	 * <a href="https://www.w3.org/TR/2006/REC-xml11-20060816/#sec-common-syn">the
+	 * XML 1.1 standard</a>.
+	 */
+	@SuppressWarnings("checkstyle:AvoidEscapedUnicodeCharacters")
 	private static final String XML_NAME_CHARACTERS
 			= XML_NAME_START_CHARACTERS + "-.0-9\u00B7\u0300-\u036F\u203F-\u2040";
 
-	private static String getTagName(final String jsonName) {
+	/**
+	 * Pattern finding one or more illegal XML characters
+	 */
+	@SuppressWarnings("checkstyle:MultipleStringLiterals")
+	private static final Pattern PATTERN_ILLEGAL_XML_CHARACTERS = Pattern.compile("[^" + XML_NAME_CHARACTERS + "]+");
+
+	/**
+	 * Pattern finding one or more illegal XML characters at the start
+	 */
+	@SuppressWarnings("checkstyle:MultipleStringLiterals")
+	private static final Pattern PATTERN_ILLEGAL_XML_CHARACTERS_AT_START
+			= Pattern.compile("^[^" + XML_NAME_START_CHARACTERS + "]+");
+
+	/**
+	 * Pattern matching any number.
+	 */
+	private static final Pattern PATTERN_IS_NUMBER = Pattern.compile("^(0|[^1-9]\\d*)$");
+
+	/**
+	 * Returns an XML compatible tag name based on the original JSON key.
+	 *
+	 * <p>
+	 * The node names inside a JSON DOM are compatible with the XML standard.
+	 * Therefore keys that are invalid XML tag names are replaced inside JSON DOM.
+	 * The attribute {@code name} still contains the original JSON object key.
+	 *
+	 * @param jsonKey the elements JSON key
+	 * @return the XML compatible tag name
+	 */
+	private static String createTagName(final String jsonKey) {
 		// Empty
-		if (jsonName.isEmpty()) {
+		if (jsonKey.isEmpty()) {
 			return "empty";
 		}
 
 		// Spaces
-		final String trimmedName = jsonName.trim();
+		final String trimmedName = jsonKey.trim();
 		if (trimmedName.isEmpty()) {
-			return jsonName.length() == 1 ? "whitespace" : "whitespaces";
+			return jsonKey.length() == 1 ? "whitespace" : "whitespaces";
 		}
 
 		// Numeric
-		if (trimmedName.matches("^\\d+(\\.\\d+)$")) {
+		if (Patterns.matches(PATTERN_IS_NUMBER, trimmedName).isPresent()) {
 			return 'n' + trimmedName;
 		}
 
 		// Simplified
-		final String simplifiedName
-				= trimmedName.replaceFirst("^[^" + XML_NAME_START_CHARACTERS + "][^" + XML_NAME_CHARACTERS + "]*", "");
+		final String simplifiedName = Strings.replaceFirst(trimmedName, PATTERN_ILLEGAL_XML_CHARACTERS_AT_START, "");
 		if (!simplifiedName.isEmpty()) {
-			return simplifiedName.replaceAll("[^" + XML_NAME_CHARACTERS + "]+", "-");
+			return Strings.replaceAll(simplifiedName, PATTERN_ILLEGAL_XML_CHARACTERS, "-");
 		}
 
 		// Non-Empty
@@ -88,8 +132,8 @@ public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 	 *
 	 * @return map of attribute names to attribute node
 	 */
-	Supplier<JsonDomNamedNodeMap<JsonDomAttribute<T>>> attributes = Finals.lazy(
-			() -> new JsonDomNamedNodeMap<>(asList(new JsonDomAttribute<>(this, ATTRIBUTE_NAME, this::getJsonName),
+	Supplier<JsonDomNamedNodeMap<JsonDomAttribute<T>>> attributes = Finals
+			.lazy(() -> new JsonDomNamedNodeMap<>(asList(new JsonDomAttribute<>(this, ATTRIBUTE_NAME, this::getJsonKey),
 					new JsonDomAttribute<>(this, ATTRIBUTE_TYPE, () -> getJsonDomValue().getType().getValue())).stream()
 							.collect(toLinkedHashMap(JsonDomAttribute::getNodeName, Function.identity()))));
 
@@ -112,20 +156,25 @@ public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 	 */
 	JsonDomValue<T> jsonDomValue;
 
-	String jsonName;
+	/**
+	 * The elements JSON key
+	 *
+	 * @return the elements JSON key
+	 */
+	String jsonKey;
 
 	/**
 	 * Constructor of {@link JsonDomElement}.
 	 *
 	 * @param parentNode   parent node
-	 * @param jsonName     JSON node name
+	 * @param jsonKey      the elements JSON key
 	 * @param jsonDomValue wrapped JSON element
 	 */
-	public JsonDomElement(final JsonDomNode<T> parentNode, final String jsonName, final JsonDomValue<T> jsonDomValue) {
-		super(parentNode, getTagName(jsonName));
+	public JsonDomElement(final JsonDomNode<T> parentNode, final String jsonKey, final JsonDomValue<T> jsonDomValue) {
+		super(parentNode, createTagName(jsonKey));
 
 		this.jsonDomValue = jsonDomValue;
-		this.jsonName = jsonName;
+		this.jsonKey = jsonKey;
 	}
 
 	/** {@inheritDoc} */

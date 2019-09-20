@@ -2,7 +2,6 @@ package de.larssh.json.dom;
 
 import static java.util.Collections.emptyList;
 
-import org.w3c.dom.Attr;
 import org.w3c.dom.Node;
 import org.w3c.dom.Text;
 
@@ -13,7 +12,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
- * JSON DOM implementation of {@link Attr}.
+ * JSON DOM implementation of {@link Text}.
  *
  * @param <T> implementation specific JSON element type
  */
