@@ -17,7 +17,6 @@ import edu.umd.cs.findbugs.annotations.NonNull;
  * @param <E> node element type
  */
 public class JsonDomNodeList<E extends Node> extends ProxiedList<E> implements NodeList {
-
 	/**
 	 * Constructor to create a {@link JsonDomNodeList} based on {@code list}.
 	 *
