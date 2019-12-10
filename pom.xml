@@ -41,7 +41,7 @@
 	</issueManagement>
 	<ciManagement>
 		<system>Travis</system>
-		<url>https://travis-ci.org/lars-sh/json-dom</url>
+		<url>https://travis-ci.com/lars-sh/json-dom</url>
 	</ciManagement>
 
 	<properties>
