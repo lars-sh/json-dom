@@ -1,3 +1,4 @@
+/.idea/
 /.settings/
 /src/main/lombok/lombok.config
 /src/test/lombok/lombok.config
@@ -6,3 +7,4 @@
 /.checkstyle
 /.classpath
 /.project
+/*.iml
