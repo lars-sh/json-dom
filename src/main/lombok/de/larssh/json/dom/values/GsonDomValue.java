@@ -13,7 +13,6 @@ import de.larssh.json.dom.children.JsonDomArrayChildren;
 import de.larssh.json.dom.children.JsonDomChildren;
 import de.larssh.json.dom.children.JsonDomObjectChildren;
 import edu.umd.cs.findbugs.annotations.NonNull;
-import edu.umd.cs.findbugs.annotations.Nullable;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -25,7 +24,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Getter
 @RequiredArgsConstructor
-@EqualsAndHashCode(onParam_ = { @Nullable })
+@EqualsAndHashCode
 public class GsonDomValue implements JsonDomValue<JsonElement> {
 	/**
 	 * Wrapped JSON element

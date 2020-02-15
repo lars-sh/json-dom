@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Getter
 @RequiredArgsConstructor
-@EqualsAndHashCode(onParam_ = { @Nullable })
+@EqualsAndHashCode
 public abstract class JsonDomNode<T> implements Node {
 	/**
 	 * Parent node

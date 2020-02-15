@@ -19,7 +19,7 @@ import lombok.EqualsAndHashCode;
  *
  * @param <T> implementation specific JSON element type
  */
-@EqualsAndHashCode(callSuper = true, onParam_ = { @Nullable })
+@EqualsAndHashCode(callSuper = true)
 public class JsonDomAttribute<T> extends JsonDomNode<T> implements Attr {
 	/**
 	 * Supplier providing the attribute value when requested. The value is not

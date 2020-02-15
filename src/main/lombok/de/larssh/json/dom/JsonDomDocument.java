@@ -27,7 +27,7 @@ import lombok.Getter;
  * @param <T> implementation specific JSON element type
  */
 @Getter
-@EqualsAndHashCode(callSuper = true, onParam_ = { @Nullable })
+@EqualsAndHashCode(callSuper = true)
 public class JsonDomDocument<T> extends JsonDomNode<T> implements Document {
 	/**
 	 * Node name of the document element

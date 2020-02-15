@@ -34,7 +34,7 @@ import lombok.Getter;
  * @param <T> implementation specific JSON element type
  */
 @Getter
-@EqualsAndHashCode(callSuper = true, onParam_ = { @Nullable })
+@EqualsAndHashCode(callSuper = true)
 public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 	/**
 	 * Name of the attribute {@code name}
