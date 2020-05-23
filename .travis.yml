@@ -4,8 +4,20 @@ jdk:
   - openjdk11
 
 install: skip
-script: mvn install -Dgpg.skip=true --batch-mode --show-version --update-snapshots
+script: mvn install site -Dgpg.skip=true --batch-mode --show-version --update-snapshots
 
 cache:
   directories:
     - $HOME/.m2/repository
+
+after_success:
+  - cp ./CHANGELOG.md ./target/site/CHANGELOG.md
+  - cp ./README.md ./target/site/README.md
+  - rm ./target/site/index.html
+deploy:
+  provider: pages:git
+  local_dir: ./target/site
+  edge: true
+  on:
+    branch: master
+    jdk: openjdk8

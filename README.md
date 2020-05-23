@@ -1,6 +1,8 @@
 # JSON DOM
 A DOM implementation for JSON. While DOM is widely used for XML structured data, it can be useful for JSON data, too. These classes wrap generic JSON elements to fit the DOM interfaces.
 
+[Changelog](CHANGELOG.md)  |  [JavaDoc](https://lars-sh.github.io/json-dom/apidocs)  |  [Generated Reports](https://lars-sh.github.io/json-dom/project-reports.html)
+
 ## Getting started
 Here's a Maven dependency example:
 
