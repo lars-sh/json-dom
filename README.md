@@ -1,4 +1,6 @@
 # JSON DOM
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Flars-sh%2Fjson-dom.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Flars-sh%2Fjson-dom?ref=badge_shield)
+
 A DOM implementation for JSON. While DOM is widely used for XML structured data, it can be useful for JSON data, too. These classes wrap generic JSON elements to fit the DOM interfaces.
 
 [Changelog](CHANGELOG.md)  |  [JavaDoc](https://lars-sh.github.io/json-dom/apidocs)  |  [Generated Reports](https://lars-sh.github.io/json-dom/project-reports.html)
@@ -219,3 +221,7 @@ The following code snippets might help to either get started with JSON DOM or de
 		transformer.transform(new DOMSource(node), new StreamResult(writer));
 		return writer.toString();
 	}
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Flars-sh%2Fjson-dom.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Flars-sh%2Fjson-dom?ref=badge_large)
