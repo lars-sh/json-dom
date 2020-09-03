@@ -15,8 +15,9 @@ import lombok.RequiredArgsConstructor;
  * @param <T> implementation specific JSON element type
  */
 @Getter
-@RequiredArgsConstructor
 @EqualsAndHashCode
+@RequiredArgsConstructor
+@SuppressWarnings("PMD.GodClass")
 public abstract class JsonDomNode<T> implements Node {
 	/**
 	 * Parent node

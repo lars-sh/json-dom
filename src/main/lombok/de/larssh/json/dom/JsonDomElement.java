@@ -34,6 +34,7 @@ import lombok.Getter;
  * @param <T> implementation specific JSON element type
  */
 @Getter
+@SuppressWarnings("PMD.GodClass")
 @EqualsAndHashCode(callSuper = true)
 public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 	/**
