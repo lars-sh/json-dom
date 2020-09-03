@@ -1,21 +1,41 @@
 language: java
 jdk:
+  # Supported versions as of https://en.wikipedia.org/wiki/Java_version_history
   - openjdk8
   - openjdk11
-
-install: skip
-script: mvn install site -Dgpg.skip=true --batch-mode --show-version --update-snapshots
-
+  - openjdk14
 cache:
   directories:
     - $HOME/.m2/repository
 
+install: |
+  set -o errexit -o pipefail
+  mvn clean install --activate-profiles dirty,dirty-package --update-snapshots --batch-mode --show-version 2>&1 | tee mvnout.txt
+script: |
+  set -o errexit -o pipefail
+  mvn verify site --define gpg.skip=true --batch-mode --show-version 2>&1 | tee --append mvnout.txt
+  set +o errexit +o pipefail
+  
+  echo ""
+  echo "[INFO] Checking for Maven warnings and errors..."
+  chmod +x ./target/travis-suppressions-parent.sh
+  mvnout=`cat mvnout.txt | grep --perl-regexp "(?i)\\[(ERR|WARN)" | ./target/travis-suppressions-parent.sh`
+  
+  if [ -n "${mvnout}" ]; then
+    echo "[WARNING] The Maven output contains the following unknown warnings and errors:"
+    echo "${mvnout}"
+    exit 1
+  else
+    echo "[INFO] No unknown warnings and errors found."
+    echo "${mvnout}"
+  fi
+
 after_success:
+  - rm ./target/site/index.html
   - cp ./CHANGELOG.md ./target/site/CHANGELOG.md
   - cp ./README.md ./target/site/README.md
-  - rm ./target/site/index.html
 deploy:
-  provider: pages:git
+  provider: pages
   local_dir: ./target/site
   edge: true
   on:
