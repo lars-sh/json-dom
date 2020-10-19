@@ -8,18 +8,14 @@ import java.util.Set;
 import java.util.function.Function;
 
 import de.larssh.json.dom.values.JsonDomValue;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 /**
  * JSON DOM children of a JSON object.
  *
  * @param <T> {@link JsonDomValue} type
  */
-@SuppressFBWarnings(value = "IMC_IMMATURE_CLASS_BAD_SERIALVERSIONUID", justification = "false positive")
 public class JsonDomObjectChildren<T extends JsonDomValue<?>> extends LinkedHashMap<String, T>
 		implements JsonDomChildren<T> {
-	private static final long serialVersionUID = -5661288407108026559L;
-
 	/**
 	 * Constructor that allows adding children while applying
 	 * {@code jsonDomValueMapper} to each child's value before.

@@ -19,8 +19,6 @@ import lombok.NoArgsConstructor;
  */
 @NoArgsConstructor
 public class JsonDomArrayChildren<T extends JsonDomValue<?>> extends ArrayList<T> implements JsonDomChildren<T> {
-	private static final long serialVersionUID = -7250560304153241382L;
-
 	/**
 	 * Constructor that allows adding an initial amount of children while applying
 	 * {@code jsonDomValueMapper} before.
