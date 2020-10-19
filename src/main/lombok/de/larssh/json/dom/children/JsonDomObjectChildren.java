@@ -8,7 +8,6 @@ import java.util.Set;
 import java.util.function.Function;
 
 import de.larssh.json.dom.values.JsonDomValue;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 /**
  * JSON DOM children of a JSON object.
