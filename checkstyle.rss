@@ -144,20 +144,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://lars-sh.github.io/json-dom//checkstyle.html#target.formatter-cache.formatter-maven-cache.properties">target/formatter-cache/formatter-maven-cache.properties</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://lars-sh.github.io/json-dom//checkstyle.html#de.larssh.json.dom.values.package-info.java">de/larssh/json/dom/values/package-info.java</a>
                 </td>
                 <td>
@@ -229,6 +215,20 @@ under the License.
                           <tr>
                 <td>
                   <a href="https://lars-sh.github.io/json-dom//checkstyle.html#de.larssh.json.dom.children.JsonDomChildren.java">de/larssh/json/dom/children/JsonDomChildren.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://lars-sh.github.io/json-dom//checkstyle.html#target.formatter-maven-cache.properties">target/formatter-maven-cache.properties</a>
                 </td>
                 <td>
                   0
