@@ -14,6 +14,21 @@ Here's a Maven dependency example:
 </dependency>
 ```
 
+### Snapshot Builds
+Snapshot builds are provided through [GitHub Packages](https://github.com/lars-sh/json-dom/packages). To use one of them, configure the version of the dependency accordingly and add the below noted repository to your POM.
+
+Beside having the possibility, please keep in mind, that snapshot builds might be either instable or even broken from time to time.
+
+```XML
+<repositories>
+	<repository>
+		<id>github-lars-sh-json-dom</id>
+		<name>GitHub Packages of de.lars-sh:json-dom</name>
+		<url>https://maven.pkg.github.com/lars-sh/json-dom</url>
+	</repository>
+</repositories>
+```
+
 ## DOM implementation for JSON
 While DOM is widely used for XML structured data, it can be useful for JSON data, too. This project wraps JSON elements to fit the DOM interfaces.
 

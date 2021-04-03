@@ -5,8 +5,8 @@
 	<parent>
 		<groupId>de.lars-sh</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.9.10</version>
-		<relativePath></relativePath>
+		<version>0.9.12</version>
+		<relativePath />
 	</parent>
 
 	<artifactId>json-dom</artifactId>
@@ -40,9 +40,13 @@
 		<url>https://github.com/${parent-pom.github.organization}/${parent-pom.github.project}/issues</url>
 	</issueManagement>
 	<ciManagement>
-		<system>Travis</system>
-		<url>https://travis-ci.com/${parent-pom.github.organization}/${parent-pom.github.project}</url>
+		<system>GitHub Actions</system>
+		<url>https://github.com/${parent-pom.github.organization}/${parent-pom.github.project}/actions</url>
 	</ciManagement>
+
+	<properties>
+		<parent-pom.create-github-release-yml>true</parent-pom.create-github-release-yml>
+	</properties>
 
 	<dependencies>
 		<dependency>
