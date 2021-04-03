@@ -74,6 +74,7 @@ public class JsonDomAttribute<T> extends JsonDomNode<T> implements Attr {
 	/** {@inheritDoc} */
 	@Nullable
 	@Override
+	@SuppressWarnings("PMD.CompareObjectsWithEquals")
 	public JsonDomAttribute<T> getNextSibling() {
 		final JsonDomNode<T> parentNode = Nullables.orElseThrow(getParentNode());
 		final JsonDomNamedNodeMap<JsonDomAttribute<T>> attributes = Nullables.orElseThrow(parentNode.getAttributes());
@@ -117,6 +118,7 @@ public class JsonDomAttribute<T> extends JsonDomNode<T> implements Attr {
 	/** {@inheritDoc} */
 	@Nullable
 	@Override
+	@SuppressWarnings("PMD.CompareObjectsWithEquals")
 	public JsonDomAttribute<T> getPreviousSibling() {
 		JsonDomAttribute<T> previousSibling = null;
 		JsonDomAttribute<T> currentSibling = null;
