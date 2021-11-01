@@ -68,7 +68,7 @@
 			<optional>true</optional>
 		</dependency>
 	</dependencies>
-	
+
 	<!-- JDK 15 and later, Maven Javadoc Plugin: Logs warnings on missing JavaDoc comments inside generated code -->
 	<!-- TODO: Remove this profile after updating to Parent POM 0.9.13 -->
 	<profiles>
