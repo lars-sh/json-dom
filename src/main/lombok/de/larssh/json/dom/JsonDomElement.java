@@ -25,6 +25,7 @@ import de.larssh.utils.text.Patterns;
 import de.larssh.utils.text.Strings;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.Nullable;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
@@ -36,6 +37,8 @@ import lombok.Getter;
 @Getter
 @SuppressWarnings("PMD.GodClass")
 @EqualsAndHashCode(callSuper = true)
+@SuppressFBWarnings(value = "MC_OVERRIDABLE_METHOD_CALL_IN_CONSTRUCTOR",
+		justification = "fields attributes and childNodes are not used from within the constuctor")
 public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 	/**
 	 * Name of the attribute {@code name}
