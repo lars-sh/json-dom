@@ -142,6 +142,7 @@ public class JsonDomDocument<T> extends JsonDomNode<T> implements Document {
 	/** {@inheritDoc} */
 	@NonNull
 	@Override
+	@SuppressWarnings("PMD.ReturnEmptyCollectionRatherThanNull")
 	public JsonDomNodeList<JsonDomNode<T>> getChildNodes() {
 		return new JsonDomNodeList<>(singletonList(getDocumentElement()));
 	}

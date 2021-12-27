@@ -47,6 +47,7 @@ public class JsonDomAttribute<T> extends JsonDomNode<T> implements Attr {
 	/** {@inheritDoc} */
 	@Nullable
 	@Override
+	@SuppressWarnings("PMD.ReturnEmptyCollectionRatherThanNull")
 	public JsonDomNamedNodeMap<JsonDomAttribute<T>> getAttributes() {
 		return null;
 	}

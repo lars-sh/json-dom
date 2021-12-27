@@ -38,4 +38,10 @@ public class JsonDomNodeList<E extends Node> extends ProxiedList<E> implements N
 	public E item(final int index) {
 		return Nullables.orElseThrow(get(index));
 	}
+
+	/** {@inheritDoc} */
+	@Override
+	public boolean isModifiable() {
+		return false;
+	}
 }

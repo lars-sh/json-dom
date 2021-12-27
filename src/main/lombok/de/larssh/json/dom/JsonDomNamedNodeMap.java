@@ -51,6 +51,12 @@ public class JsonDomNamedNodeMap<E extends Node> extends ProxiedMap<String, E> i
 	}
 
 	/** {@inheritDoc} */
+	@Override
+	public boolean isModifiable() {
+		return false;
+	}
+
+	/** {@inheritDoc} */
 	@Nullable
 	@Override
 	public E item(final int index) {
