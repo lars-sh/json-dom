@@ -2,11 +2,6 @@ package de.larssh.json.dom.values;
 
 import java.util.Collections;
 
-import javax.json.JsonArray;
-import javax.json.JsonString;
-import javax.json.JsonValue;
-import javax.json.JsonValue.ValueType;
-
 import org.w3c.dom.DOMException;
 
 import de.larssh.json.dom.JsonDomType;
@@ -15,6 +10,10 @@ import de.larssh.json.dom.children.JsonDomChildren;
 import de.larssh.json.dom.children.JsonDomObjectChildren;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import jakarta.json.JsonArray;
+import jakarta.json.JsonString;
+import jakarta.json.JsonValue;
+import jakarta.json.JsonValue.ValueType;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
