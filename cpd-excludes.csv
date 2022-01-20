@@ -1,1 +1,1 @@
-de.larssh.json.dom.values.GsonDomValue,de.larssh.json.dom.values.JacksonDomValue,de.larssh.json.dom.values.JsonProcessingDomValue
+de.larssh.json.dom.values.GsonDomValue,de.larssh.json.dom.values.JacksonDomValue,de.larssh.json.dom.values.JakartaJsonProcessingDomValue,de.larssh.json.dom.values.JsonProcessingDomValue
