@@ -23,9 +23,9 @@ under the License.
     <link>https://lars-sh.github.io/json-dom/</link>
     <description>JSON DOM - Checkstyle report</description>
     <language>en-us</language>
-    <copyright>&#169;2021</copyright>
+    <copyright>&#169;2022</copyright>
     <item>
-      <title>File: 25,
+      <title>File: 26,
              Errors: 0,
              Warnings: 0,
              Infos: 0
@@ -61,6 +61,20 @@ under the License.
                           <tr>
                 <td>
                   <a href="https://lars-sh.github.io/json-dom//checkstyle.html#de.larssh.json.dom.values.JacksonDomValue.java">de/larssh/json/dom/values/JacksonDomValue.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://lars-sh.github.io/json-dom//checkstyle.html#de.larssh.json.dom.values.JakartaJsonProcessingDomValue.java">de/larssh/json/dom/values/JakartaJsonProcessingDomValue.java</a>
                 </td>
                 <td>
                   0

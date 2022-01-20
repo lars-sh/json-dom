@@ -17,7 +17,7 @@ Here's a Maven dependency example:
 ### Snapshot Builds
 Snapshot builds are provided through [GitHub Packages](https://github.com/lars-sh/json-dom/packages). To use one of them, configure the version of the dependency accordingly and add the below noted repository to your POM.
 
-Beside having the possibility, please keep in mind, that snapshot builds might be either instable or even broken from time to time.
+Beside having the possibility, please keep in mind, that snapshot builds might be either unstable or even broken from time to time.
 
 ```XML
 <repositories>
@@ -192,25 +192,30 @@ JsonNode jsonNode = JsonDomXPathExpressions.getJsonElement(jsonDomDocument, xPat
 
 Note: JSON DOM does not come with Jackson dependencies itself. To use `JacksonDomValue` please add Jackson to your dependencies.
 
-### Using JSON Processing ([aka JSR-374](https://jcp.org/en/jsr/detail?id=374))
-JSON DOM comes with a JSON Processing implementation called `JsonProcessingDomValue`. Take a look at the following example coding to get a DOM Document out of a JSON Processing value.
+### Using Jakarta JSON Processing
+JSON DOM comes with a Jakarta JSON Processing implementation called `JakartaJsonProcessingDomValue`. Take a look at the following example coding to get a DOM Document out of a Jakarta JSON Processing value.
 
 ```Java
 // The JsonValue is part of JSON Processing
 JsonValue jsonValue = ...;
 
-// At first the JSON Processing object needs to be wrapped using its JSON DOM implementation: JsonProcessingDomValue
-JsonProcessingDomValue jsonProcessingDomValue = new JsonProcessingDomValue(jsonValue);
+// At first the Jakarta JSON Processing object needs to be wrapped using its JSON DOM implementation: JakartaJsonProcessingDomValue
+JakartaJsonProcessingDomValue jakartaJsonProcessingDomValue = new JakartaJsonProcessingDomValue(jsonValue);
 
 // Finally you can either create a DOM Document out of it...
-JsonDomDocument<JsonValue> jsonDomDocument = new JsonDomDocument(jsonProcessingDomValue);
+JsonDomDocument<JsonValue> jsonDomDocument = new JsonDomDocument(jakartaJsonProcessingDomValue);
 
 // ...or even use the helper methods inside JsonDomXPathExpressions to evaluate XPath expressions to JSON elements.
 XPathExpression xPathExpression = ...;
 JsonValue jsonValue = JsonDomXPathExpressions.getJsonElement(jsonDomDocument, xPathExpression);
 ```
 
-Note: JSON DOM does not come with a JSR-374 implementation. To use `JsonProcessingDomValue` please add an implementation to your dependencies.
+Note: JSON DOM does not come with a Jakarta JSON Processing implementation. To use `JakartaJsonProcessingDomValue` please add an implementation to your dependencies.
+
+### Using JEE JSON Processing ([aka JSR-374](https://jcp.org/en/jsr/detail?id=374))
+The usage of JEE JSON Processing (aka JSR-374) is the same as it is for Jakarta JSON Processing, described above. Just use `JsonProcessingDomValue` instead of `JakartaJsonProcessingDomValue`.
+
+Note: JSON DOM does not come with a JEE JSON Processing (aka JSR-374) implementation. To use `JsonProcessingDomValue` please add an implementation to your dependencies.
 
 ### Using any other JSON parser
 The interface `JsonDomValue` is used to wrap elements as JSON DOM compatible value. Implement it for your concerns and feel free to push your code back to this repository.
