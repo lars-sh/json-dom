@@ -7,7 +7,11 @@ All notable changes to this project will be documented in this file.
 
 Download at [Maven Search](https://search.maven.org/artifact/de.lars-sh/json-dom/0.9.2/jar)
 
-* Modified the DOM structure to be more intuitive
+### Added
+* Jakarta JSON Processing implementation of JsonDomValue
+
+### Changed
+* The DOM structure to be more intuitive
 
 <a name="0.9.1"></a>
 
