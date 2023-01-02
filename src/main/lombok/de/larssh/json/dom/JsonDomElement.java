@@ -1,6 +1,5 @@
 package de.larssh.json.dom;
 
-import static de.larssh.utils.Collectors.toLinkedHashMap;
 import static de.larssh.utils.Finals.constant;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
@@ -9,7 +8,6 @@ import static java.util.stream.Collectors.toList;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.regex.Pattern;
 
@@ -138,8 +136,7 @@ public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 	 */
 	Supplier<JsonDomNamedNodeMap<JsonDomAttribute<T>>> attributes = Finals
 			.lazy(() -> new JsonDomNamedNodeMap<>(asList(new JsonDomAttribute<>(this, ATTRIBUTE_NAME, this::getJsonKey),
-					new JsonDomAttribute<>(this, ATTRIBUTE_TYPE, () -> getJsonDomValue().getType().getValue())).stream()
-							.collect(toLinkedHashMap(JsonDomAttribute::getNodeName, Function.identity()))));
+					new JsonDomAttribute<>(this, ATTRIBUTE_TYPE, () -> getJsonDomValue().getType().getValue()))));
 
 	/**
 	 * List of child element nodes

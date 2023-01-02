@@ -12,6 +12,7 @@ Download at [Maven Search](https://search.maven.org/artifact/de.lars-sh/json-dom
 
 ### Changed
 * The DOM structure to be more intuitive
+* Constructor parameter of `de.larssh.json.dom.JsonDomNamedNodeMap` from `Map` to `List`
 
 <a name="0.9.1"></a>
 

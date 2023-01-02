@@ -1,9 +1,10 @@
 package de.larssh.json.dom;
 
-import static java.util.Collections.unmodifiableMap;
+import static de.larssh.utils.Collectors.toLinkedHashMap;
 
+import java.util.Collection;
 import java.util.Iterator;
-import java.util.Map;
+import java.util.function.Function;
 
 import org.w3c.dom.DOMException;
 import org.w3c.dom.NamedNodeMap;
@@ -15,18 +16,18 @@ import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.Nullable;
 
 /**
- * {@link Map} based {@link NamedNodeMap} implementation
+ * {@link java.util.Map} based {@link NamedNodeMap} implementation
  *
  * @param <E> node element type
  */
 public class JsonDomNamedNodeMap<E extends Node> extends ProxiedMap<String, E> implements NamedNodeMap {
 	/**
-	 * Constructor to create a {@link JsonDomNamedNodeMap} based on {@code map}.
+	 * Constructor to create a {@link JsonDomNamedNodeMap} based on {@code nodes}.
 	 *
-	 * @param map map of keys to nodes
+	 * @param nodes collections of nodes
 	 */
-	public JsonDomNamedNodeMap(final Map<String, E> map) {
-		super(unmodifiableMap(map));
+	public JsonDomNamedNodeMap(final Collection<E> nodes) {
+		super(nodes.stream().collect(toLinkedHashMap(Node::getNodeName, Function.identity())));
 	}
 
 	/** {@inheritDoc} */
