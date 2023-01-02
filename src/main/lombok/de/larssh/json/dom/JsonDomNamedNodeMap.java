@@ -4,7 +4,6 @@ import static de.larssh.utils.Collectors.toLinkedHashMap;
 
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.function.Function;
 
 import org.w3c.dom.DOMException;
@@ -17,7 +16,7 @@ import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.Nullable;
 
 /**
- * {@link Map} based {@link NamedNodeMap} implementation
+ * {@link java.util.Map} based {@link NamedNodeMap} implementation
  *
  * @param <E> node element type
  */
