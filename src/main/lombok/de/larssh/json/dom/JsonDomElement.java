@@ -138,7 +138,10 @@ public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 	 */
 	Supplier<JsonDomNamedNodeMap<JsonDomAttribute<T>>> attributes = Finals
 			.lazy(() -> new JsonDomNamedNodeMap<>(asList(new JsonDomAttribute<>(this, ATTRIBUTE_NAME, this::getJsonKey),
-					new JsonDomAttribute<>(this, ATTRIBUTE_TYPE, () -> getJsonDomValue().getType().getValue())).stream()
+					new JsonDomAttribute<>(this, //
+							ATTRIBUTE_TYPE,
+							() -> getJsonDomValue().getType().getValue()))
+					.stream()
 					.collect(toLinkedHashMap(JsonDomAttribute::getNodeName, Function.identity()))));
 
 	/**
