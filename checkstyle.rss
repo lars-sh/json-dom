@@ -23,7 +23,7 @@ under the License.
     <link>https://lars-sh.github.io/json-dom/</link>
     <description>JSON DOM - Checkstyle report</description>
     <language>en-us</language>
-    <copyright>&#169;2023</copyright>
+    <copyright>&#169;2024</copyright>
     <item>
       <title>File: 26,
              Errors: 0,
@@ -326,7 +326,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://lars-sh.github.io/json-dom//checkstyle.html#de.larssh.json.dom.JsonDomXPathExpressions.java">de/larssh/json/dom/JsonDomXPathExpressions.java</a>
+                  <a href="https://lars-sh.github.io/json-dom//checkstyle.html#de.larssh.json.dom.JsonDomElement.java">de/larssh/json/dom/JsonDomElement.java</a>
                 </td>
                 <td>
                   0
@@ -340,7 +340,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://lars-sh.github.io/json-dom//checkstyle.html#de.larssh.json.dom.JsonDomElement.java">de/larssh/json/dom/JsonDomElement.java</a>
+                  <a href="https://lars-sh.github.io/json-dom//checkstyle.html#de.larssh.json.dom.JsonDomXPathExpressions.java">de/larssh/json/dom/JsonDomXPathExpressions.java</a>
                 </td>
                 <td>
                   0
