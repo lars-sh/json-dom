@@ -1,0 +1,17 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+JSON DOM,de.larssh.json.dom,JsonDomDocument,108,33,0,0,34,9,34,7,34,7
+JSON DOM,de.larssh.json.dom,JsonDomNamedNodeMap,44,37,2,4,9,9,9,4,7,3
+JSON DOM,de.larssh.json.dom,JsonDomElement,189,187,19,9,42,26,36,14,25,11
+JSON DOM,de.larssh.json.dom,JsonDomXPathExpressions,22,0,0,0,2,0,2,0,2,0
+JSON DOM,de.larssh.json.dom,JsonDomText,69,18,0,0,17,7,17,5,17,5
+JSON DOM,de.larssh.json.dom,JsonDomAttribute,104,16,8,0,28,5,18,3,14,3
+JSON DOM,de.larssh.json.dom,JsonDomType,0,76,0,0,0,7,0,1,0,1
+JSON DOM,de.larssh.json.dom,JsonDomNodeList,11,5,0,0,3,2,3,1,3,1
+JSON DOM,de.larssh.json.dom,JsonDomNotSupportedException,9,0,0,0,3,0,1,0,1,0
+JSON DOM,de.larssh.json.dom,JsonDomNode,105,17,8,2,27,4,29,4,25,3
+JSON DOM,de.larssh.json.dom.children,JsonDomObjectChildren,12,23,0,2,4,7,2,3,2,2
+JSON DOM,de.larssh.json.dom.children,JsonDomArrayChildren,0,39,0,2,0,7,0,4,0,3
+JSON DOM,de.larssh.json.dom.values,JakartaJsonProcessingDomValue,93,0,20,0,25,0,14,0,4,0
+JSON DOM,de.larssh.json.dom.values,JacksonDomValue,12,70,2,16,3,20,3,10,1,3
+JSON DOM,de.larssh.json.dom.values,JsonProcessingDomValue,93,0,20,0,25,0,14,0,4,0
+JSON DOM,de.larssh.json.dom.values,GsonDomValue,101,0,22,0,27,0,15,0,4,0

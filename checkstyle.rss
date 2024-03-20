@@ -25,7 +25,7 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2024</copyright>
     <item>
-      <title>File: 26,
+      <title>File: 27,
              Errors: 0,
              Warnings: 0,
              Infos: 0
@@ -201,6 +201,20 @@ under the License.
                           <tr>
                 <td>
                   <a href="https://lars-sh.github.io/json-dom//checkstyle.html#de.larssh.json.dom.JsonDomAttribute.java">de/larssh/json/dom/JsonDomAttribute.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://lars-sh.github.io/json-dom//checkstyle.html#de.larssh.json.dom.values.JacksonDomValueTest.java">de/larssh/json/dom/values/JacksonDomValueTest.java</a>
                 </td>
                 <td>
                   0

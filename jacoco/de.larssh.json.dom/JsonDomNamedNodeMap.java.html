@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JsonDomNamedNodeMap.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JSON DOM</a> &gt; <a href="index.source.html" class="el_package">de.larssh.json.dom</a> &gt; <span class="el_source">JsonDomNamedNodeMap.java</span></div><h1>JsonDomNamedNodeMap.java</h1><pre class="source lang-java linenums">package de.larssh.json.dom;
+
+import static de.larssh.utils.Collectors.toLinkedHashMap;
+
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.function.Function;
+
+import org.w3c.dom.DOMException;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+
+import de.larssh.utils.collection.ProxiedMap;
+import de.larssh.utils.text.Strings;
+import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.Nullable;
+
+/**
+ * {@link java.util.Map} based {@link NamedNodeMap} implementation
+ *
+ * @param &lt;E&gt; node element type
+ */
+public class JsonDomNamedNodeMap&lt;E extends Node&gt; extends ProxiedMap&lt;String, E&gt; implements NamedNodeMap {
+	/**
+	 * Constructor to create a {@link JsonDomNamedNodeMap} based on {@code nodes}.
+	 *
+	 * @param nodes collections of nodes
+	 */
+	public JsonDomNamedNodeMap(final Collection&lt;E&gt; nodes) {
+<span class="fc" id="L30">		super(nodes.stream().collect(toLinkedHashMap(Node::getNodeName, Function.identity())));</span>
+<span class="fc" id="L31">	}</span>
+
+	/** {@inheritDoc} */
+	@Override
+	public int getLength() {
+<span class="fc" id="L36">		return size();</span>
+	}
+
+	/** {@inheritDoc} */
+	@Nullable
+	@Override
+	public E getNamedItem(@Nullable final String name) {
+<span class="nc" id="L43">		return get(name);</span>
+	}
+
+	/** {@inheritDoc} */
+	@NonNull
+	@Override
+	public E getNamedItemNS(@Nullable @SuppressWarnings(&quot;unused&quot;) final String namespaceURI,
+			@Nullable @SuppressWarnings(&quot;unused&quot;) final String localName) {
+<span class="nc" id="L51">		throw new JsonDomNotSupportedException();</span>
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public boolean isModifiable() {
+<span class="nc" id="L57">		return false;</span>
+	}
+
+	/** {@inheritDoc} */
+	@Nullable
+	@Override
+	public E item(final int index) {
+<span class="pc bpc" id="L64" title="1 of 2 branches missed.">		if (index &lt; 0) {</span>
+<span class="nc" id="L65">			throw new DOMException(DOMException.INDEX_SIZE_ERR, Strings.format(&quot;Invalid index %d.&quot;, index));</span>
+		}
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">		if (index &gt;= size()) {</span>
+<span class="nc" id="L68">			return null;</span>
+		}
+<span class="fc" id="L70">		final Iterator&lt;E&gt; iterator = values().iterator();</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">		for (int i = 0; i &lt; index; i += 1) {</span>
+<span class="fc" id="L72">			iterator.next();</span>
+		}
+<span class="fc" id="L74">		return iterator.next();</span>
+	}
+
+	/** {@inheritDoc} */
+	@Nullable
+	@Override
+	public E removeNamedItem(@Nullable final String name) {
+<span class="nc" id="L81">		return remove(name);</span>
+	}
+
+	/** {@inheritDoc} */
+	@NonNull
+	@Override
+	public E removeNamedItemNS(@Nullable @SuppressWarnings(&quot;unused&quot;) final String namespaceURI,
+			@Nullable @SuppressWarnings(&quot;unused&quot;) final String localName) {
+<span class="nc" id="L89">		throw new JsonDomNotSupportedException();</span>
+	}
+
+	/** {@inheritDoc} */
+	@NonNull
+	@Override
+	public E setNamedItem(@Nullable @SuppressWarnings(&quot;unused&quot;) final Node node) {
+<span class="nc" id="L96">		throw new UnsupportedOperationException();</span>
+	}
+
+	/** {@inheritDoc} */
+	@NonNull
+	@Override
+	public E setNamedItemNS(@Nullable @SuppressWarnings(&quot;unused&quot;) final Node node) {
+<span class="nc" id="L103">		throw new JsonDomNotSupportedException();</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
