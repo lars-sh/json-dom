@@ -89,7 +89,7 @@ public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 	/**
 	 * Pattern matching any number.
 	 */
-	private static final Pattern PATTERN_IS_NUMBER = Pattern.compile("^(0|[^1-9]\\d*)$");
+	private static final Pattern PATTERN_IS_NUMBER = Pattern.compile("^(0|[1-9]\\d*)$");
 
 	/**
 	 * Returns an XML compatible tag name based on the original JSON key.
