@@ -163,7 +163,7 @@ JsonElement jsonElement = ...;
 GsonDomValue gsonDomValue = new GsonDomValue(jsonElement);
 
 // Finally you can either create a DOM Document out of it...
-JsonDomDocument<JsonElement> jsonDomDocument = new JsonDomDocument(gsonDomValue);
+JsonDomDocument<JsonElement> jsonDomDocument = new JsonDomDocument<>(gsonDomValue);
 
 // ...or even use the helper methods inside JsonDomXPathExpressions to evaluate XPath expressions to JSON elements.
 XPathExpression xPathExpression = ...;
@@ -183,7 +183,7 @@ JsonNode jsonNode = ...;
 JacksonDomValue jacksonDomValue = new JacksonDomValue(jsonNode);
 
 // Finally you can either create a DOM Document out of it...
-JsonDomDocument<JsonNode> jsonDomDocument = new JsonDomDocument(jacksonDomValue);
+JsonDomDocument<JsonNode> jsonDomDocument = new JsonDomDocument<>(jacksonDomValue);
 
 // ...or even use the helper methods inside JsonDomXPathExpressions to evaluate XPath expressions to JSON elements.
 XPathExpression xPathExpression = ...;
@@ -203,7 +203,7 @@ JsonValue jsonValue = ...;
 JakartaJsonProcessingDomValue jakartaJsonProcessingDomValue = new JakartaJsonProcessingDomValue(jsonValue);
 
 // Finally you can either create a DOM Document out of it...
-JsonDomDocument<JsonValue> jsonDomDocument = new JsonDomDocument(jakartaJsonProcessingDomValue);
+JsonDomDocument<JsonValue> jsonDomDocument = new JsonDomDocument<>(jakartaJsonProcessingDomValue);
 
 // ...or even use the helper methods inside JsonDomXPathExpressions to evaluate XPath expressions to JSON elements.
 XPathExpression xPathExpression = ...;
