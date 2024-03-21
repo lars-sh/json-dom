@@ -7,7 +7,8 @@ All notable changes to this project will be documented in this file.
 
 Download at [Maven Search](https://search.maven.org/artifact/de.lars-sh/json-dom/0.9.4/jar)
 
-* TODO
+### Fixed
+* Make the Jakarta JSON Processing dependency optional
 
 <a name="0.9.3"></a>
 
