@@ -19,19 +19,22 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import de.larssh.json.dom.JsonDomDocument;
+import de.larssh.utils.annotations.PackagePrivate;
 import de.larssh.utils.io.Resources;
 
 /**
  * Test {@link JacksonDomValue}
  */
-public class JacksonDomValueTest {
+@PackagePrivate
+class JacksonDomValueTest {
 	/**
 	 * Tests reading JSON and converting it to XML.
 	 *
 	 * @throws Exception on error
 	 */
 	@Test
-	public void shouldReturnXml_whenConvertJsonToXml_givenJson() throws Exception {
+	@PackagePrivate
+	void shouldReturnXml_whenConvertJsonToXml_givenJson() throws Exception {
 		// given
 		final String json = new String(
 				Files.readAllBytes(Resources.getResourceRelativeTo(getClass(), Paths.get("data.json")).get()),

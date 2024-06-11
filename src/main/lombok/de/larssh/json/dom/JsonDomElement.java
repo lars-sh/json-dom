@@ -7,6 +7,7 @@ import static java.util.Collections.singletonList;
 import static java.util.stream.Collectors.toList;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.regex.Pattern;
@@ -96,13 +97,20 @@ public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 	 *
 	 * <p>
 	 * The node names inside a JSON DOM are compatible with the XML standard.
-	 * Therefore keys that are invalid XML tag names are replaced inside JSON DOM.
+	 * Therefore, keys that are invalid XML tag names are replaced inside JSON DOM.
 	 * The attribute {@code name} still contains the original JSON object key.
 	 *
-	 * @param jsonKey the elements JSON key
+	 * @param parentNode parent node
+	 * @param jsonKey    the elements JSON key
 	 * @return the XML compatible tag name
 	 */
-	private static String createTagName(final String jsonKey) {
+	private static String createTagName(final JsonDomNode<?> parentNode, final String jsonKey) {
+		// Array Element
+		if (parentNode instanceof JsonDomElement
+				&& ((JsonDomElement<?>) parentNode).getJsonDomValue().getType() == JsonDomType.ARRAY) {
+			return "element";
+		}
+
 		// Empty
 		if (jsonKey.isEmpty()) {
 			return "empty";
@@ -172,7 +180,7 @@ public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 	 * @param jsonDomValue wrapped JSON element
 	 */
 	public JsonDomElement(final JsonDomNode<T> parentNode, final String jsonKey, final JsonDomValue<T> jsonDomValue) {
-		super(parentNode, createTagName(jsonKey));
+		super(parentNode, createTagName(parentNode, jsonKey));
 
 		this.jsonDomValue = jsonDomValue;
 		this.jsonKey = jsonKey;
@@ -261,11 +269,18 @@ public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 	/** {@inheritDoc} */
 	@Nullable
 	@Override
-	public JsonDomElement<T> getNextSibling() {
+	@SuppressWarnings("PMD.CompareObjectsWithEquals")
+	public final JsonDomNode<T> getNextSibling() {
 		final JsonDomNode<T> parentNode = Nullables.orElseThrow(getParentNode());
-		final JsonDomNodeList<JsonDomNode<T>> children = parentNode.getChildNodes();
-		final int index = children.indexOf(this);
-		return index + 1 < children.size() ? (JsonDomElement<T>) children.get(index + 1) : null;
+		final JsonDomNodeList<JsonDomNode<T>> childNodes = Nullables.orElseThrow(parentNode.getChildNodes());
+		final Iterator<JsonDomNode<T>> iterator = childNodes.iterator();
+
+		while (iterator.hasNext()) {
+			if (iterator.next() == this) {
+				return iterator.hasNext() ? iterator.next() : null;
+			}
+		}
+		return null;
 	}
 
 	/** {@inheritDoc} */
@@ -291,11 +306,20 @@ public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 	/** {@inheritDoc} */
 	@Nullable
 	@Override
-	public JsonDomElement<T> getPreviousSibling() {
+	@SuppressWarnings("PMD.CompareObjectsWithEquals")
+	public final JsonDomNode<T> getPreviousSibling() {
+		JsonDomNode<T> previousSibling = null;
+		JsonDomNode<T> currentSibling = null;
+
 		final JsonDomNode<T> parentNode = Nullables.orElseThrow(getParentNode());
-		final JsonDomNodeList<JsonDomNode<T>> children = parentNode.getChildNodes();
-		final int index = children.indexOf(this);
-		return index > 0 ? (JsonDomElement<T>) children.get(index - 1) : null;
+		final JsonDomNodeList<JsonDomNode<T>> childNodes = Nullables.orElseThrow(parentNode.getChildNodes());
+		final Iterator<JsonDomNode<T>> iterator = childNodes.iterator();
+
+		while (currentSibling != this) {
+			previousSibling = currentSibling;
+			currentSibling = iterator.next();
+		}
+		return previousSibling;
 	}
 
 	/** {@inheritDoc} */

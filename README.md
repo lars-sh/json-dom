@@ -98,18 +98,18 @@ Credits for the example goes to [the Wikipedia authors](https://en.wikipedia.org
 		<postalCode>10021-3100</postalCode>
 	</address>
 	<phoneNumbers>
-		<n0>
+		<element>
 			<type>home</type>
 			<number>212 555-1234</number>
-		</n0>
-		<n1>
+		</element>
+		<element>
 			<type>office</type>
 			<number>646 555-4567</number>
-		</n1>
-		<n2>
+		</element>
+		<element>
 			<type>mobile</type>
 			<number>123 456-7890</number>
-		</n2>
+		</element>
 	</phoneNumbers>
 	<children />
 	<spouse>null</spouse>
@@ -131,18 +131,18 @@ Credits for the example goes to [the Wikipedia authors](https://en.wikipedia.org
 		<postalCode name="postalCode" type="string">10021-3100</postalCode>
 	</address>
 	<phoneNumbers name="phoneNumbers" type="array">
-		<n0 name="0" type="object">
+		<element name="0" type="object">
 			<type name="type" type="string">home</type>
 			<number name="number" type="string">212 555-1234</number>
-		</n0>
-		<n1 name="1" type="object">
+		</element>
+		<element name="1" type="object">
 			<type name="type" type="string">office</type>
 			<number name="number" type="string">646 555-4567</number>
-		</n1>
-		<n2 name="2" type="object">
+		</element>
+		<element name="2" type="object">
 			<type name="type" type="string">mobile</type>
 			<number name="number" type="string">123 456-7890</number>
-		</n2>
+		</element>
 	</phoneNumbers>
 	<children name="children" type="array" />
 	<spouse name="spouse" type="null">null</spouse>
