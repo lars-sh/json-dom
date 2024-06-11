@@ -34,7 +34,7 @@ import lombok.Getter;
  * @param <T> implementation specific JSON element type
  */
 @Getter
-@SuppressWarnings("PMD.GodClass")
+@SuppressWarnings({ "PMD.CyclomaticComplexity", "PMD.GodClass" })
 @EqualsAndHashCode(callSuper = true)
 @SuppressFBWarnings(value = "MC_OVERRIDABLE_METHOD_CALL_IN_CONSTRUCTOR",
 		justification = "fields attributes and childNodes are not used from within the constuctor")
