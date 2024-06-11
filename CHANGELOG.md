@@ -7,6 +7,9 @@ All notable changes to this project will be documented in this file.
 
 Download at [Maven Search](https://search.maven.org/artifact/de.lars-sh/json-dom/0.9.4/jar)
 
+### Changed
+* To simplify accessing elements inside JSON arrays their unified name is now "element" instead of "n0", "n1", "n2", ...
+
 ### Fixed
 * Make the Jakarta JSON Processing dependency optional
 
