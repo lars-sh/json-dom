@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+<a name="0.9.5"></a>
+
+## [0.9.5-SNAPSHOT](https://github.com/lars-sh/json-dom/compare/4484734a77624ebcc91048d749c5bc1801713f96...master)
+
+Download at [Maven Search](https://search.maven.org/artifact/de.lars-sh/json-dom/0.9.5/jar)
+
+* TODO
+
 <a name="0.9.4"></a>
 
 ## [0.9.4](https://github.com/lars-sh/json-dom/compare/da2c82bc7aa6aab4782bdbec935f0563d512a828...4484734a77624ebcc91048d749c5bc1801713f96) (2024-06-11)
