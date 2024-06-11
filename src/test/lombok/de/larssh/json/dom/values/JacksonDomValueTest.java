@@ -25,8 +25,8 @@ import de.larssh.utils.io.Resources;
 /**
  * Test {@link JacksonDomValue}
  */
-@PackagePrivate
-class JacksonDomValueTest {
+@SuppressWarnings("java:S5786")
+public class JacksonDomValueTest {
 	/**
 	 * Tests reading JSON and converting it to XML.
 	 *
