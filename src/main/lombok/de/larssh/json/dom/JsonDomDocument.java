@@ -221,7 +221,7 @@ public class JsonDomDocument<T> extends JsonDomNode<T> implements Document {
 	/** {@inheritDoc} */
 	@Override
 	public short getNodeType() {
-		return Node.DOCUMENT_NODE;
+		return DOCUMENT_NODE;
 	}
 
 	/** {@inheritDoc} */

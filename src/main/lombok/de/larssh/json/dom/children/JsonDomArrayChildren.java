@@ -31,6 +31,7 @@ public class JsonDomArrayChildren<T extends JsonDomValue<?>> extends ArrayList<T
 	 * @param jsonDomValueMapper mapper from any given type to a
 	 *                           {@link JsonDomValue} type
 	 */
+	@SuppressWarnings("PMD.ConstructorCallsOverridableMethod")
 	public <V> JsonDomArrayChildren(final int initialCapacity,
 			final Iterable<V> children,
 			final Function<V, T> jsonDomValueMapper) {

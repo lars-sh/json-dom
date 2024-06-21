@@ -10,8 +10,9 @@ public class JsonDomNotSupportedException extends DOMException {
 	 * Constructs a new {@link JsonDomNotSupportedException} with the default detail
 	 * message.
 	 */
+	@SuppressWarnings("PMD.ConstructorCallsOverridableMethod")
 	public JsonDomNotSupportedException() {
-		super(DOMException.NOT_SUPPORTED_ERR, "Not supported.");
+		super(NOT_SUPPORTED_ERR, "Not supported.");
 		initCause(null);
 	}
 }

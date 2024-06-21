@@ -84,6 +84,7 @@ public abstract class JsonDomNode<T> implements Node {
 	/** {@inheritDoc} */
 	@Nullable
 	@Override
+	@SuppressWarnings("PMD.LooseCoupling")
 	public JsonDomNode<T> getFirstChild() {
 		final JsonDomNodeList<JsonDomNode<T>> childNodes = getChildNodes();
 		return childNodes.isEmpty() ? null : childNodes.get(0);
@@ -99,6 +100,7 @@ public abstract class JsonDomNode<T> implements Node {
 	/** {@inheritDoc} */
 	@Nullable
 	@Override
+	@SuppressWarnings("PMD.LooseCoupling")
 	public JsonDomNode<T> getLastChild() {
 		final JsonDomNodeList<JsonDomNode<T>> childNodes = getChildNodes();
 		return childNodes.isEmpty() ? null : childNodes.get(childNodes.size() - 1);
@@ -153,6 +155,7 @@ public abstract class JsonDomNode<T> implements Node {
 
 	/** {@inheritDoc} */
 	@Override
+	@SuppressWarnings("PMD.LooseCoupling")
 	public boolean hasAttributes() {
 		final JsonDomNamedNodeMap<JsonDomAttribute<T>> attributes = getAttributes();
 		return attributes != null && !attributes.isEmpty();

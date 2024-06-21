@@ -57,6 +57,7 @@ public class JsonDomObjectChildren<T extends JsonDomValue<?>> extends LinkedHash
 	 * @param jsonDomValueMapper mapper from any given type to a
 	 *                           {@link JsonDomValue} type
 	 */
+	@SuppressWarnings("PMD.ConstructorCallsOverridableMethod")
 	public <V> JsonDomObjectChildren(final Iterator<Entry<String, V>> children,
 			final Function<V, T> jsonDomValueMapper) {
 		while (children.hasNext()) {

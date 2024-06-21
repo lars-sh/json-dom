@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.function.Supplier;
 
 import org.w3c.dom.Attr;
-import org.w3c.dom.Node;
 import org.w3c.dom.TypeInfo;
 
 import de.larssh.utils.Nullables;
@@ -75,7 +74,7 @@ public class JsonDomAttribute<T> extends JsonDomNode<T> implements Attr {
 	/** {@inheritDoc} */
 	@Nullable
 	@Override
-	@SuppressWarnings("PMD.CompareObjectsWithEquals")
+	@SuppressWarnings({ "PMD.CompareObjectsWithEquals", "PMD.LooseCoupling" })
 	public JsonDomAttribute<T> getNextSibling() {
 		final JsonDomNode<T> parentNode = Nullables.orElseThrow(getParentNode());
 		final JsonDomNamedNodeMap<JsonDomAttribute<T>> attributes = Nullables.orElseThrow(parentNode.getAttributes());
@@ -92,7 +91,7 @@ public class JsonDomAttribute<T> extends JsonDomNode<T> implements Attr {
 	/** {@inheritDoc} */
 	@Override
 	public short getNodeType() {
-		return Node.ATTRIBUTE_NODE;
+		return ATTRIBUTE_NODE;
 	}
 
 	/** {@inheritDoc} */
@@ -119,7 +118,7 @@ public class JsonDomAttribute<T> extends JsonDomNode<T> implements Attr {
 	/** {@inheritDoc} */
 	@Nullable
 	@Override
-	@SuppressWarnings("PMD.CompareObjectsWithEquals")
+	@SuppressWarnings({ "PMD.CompareObjectsWithEquals", "PMD.LooseCoupling" })
 	public JsonDomAttribute<T> getPreviousSibling() {
 		JsonDomAttribute<T> previousSibling = null;
 		JsonDomAttribute<T> currentSibling = null;

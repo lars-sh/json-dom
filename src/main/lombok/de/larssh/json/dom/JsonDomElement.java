@@ -14,7 +14,6 @@ import java.util.regex.Pattern;
 
 import org.w3c.dom.Attr;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.TypeInfo;
 
 import de.larssh.json.dom.values.JsonDomValue;
@@ -142,6 +141,7 @@ public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 	 *
 	 * @return map of attribute names to attribute node
 	 */
+	@SuppressWarnings("PMD.LooseCoupling")
 	Supplier<JsonDomNamedNodeMap<JsonDomAttribute<T>>> attributes = Finals
 			.lazy(() -> new JsonDomNamedNodeMap<>(asList(new JsonDomAttribute<>(this, ATTRIBUTE_NAME, this::getJsonKey),
 					new JsonDomAttribute<>(this, ATTRIBUTE_TYPE, () -> getJsonDomValue().getType().getValue()))));
@@ -149,6 +149,7 @@ public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 	/**
 	 * List of child element nodes
 	 */
+	@SuppressWarnings("PMD.LooseCoupling")
 	Supplier<JsonDomNodeList<JsonDomNode<T>>> childNodes
 			= Finals.lazy(() -> new JsonDomNodeList<>(getJsonDomValue().getType().isComplex()
 					? getJsonDomValue().getChildren()
@@ -269,7 +270,7 @@ public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 	/** {@inheritDoc} */
 	@Nullable
 	@Override
-	@SuppressWarnings("PMD.CompareObjectsWithEquals")
+	@SuppressWarnings({ "PMD.CompareObjectsWithEquals", "PMD.LooseCoupling" })
 	public final JsonDomNode<T> getNextSibling() {
 		final JsonDomNode<T> parentNode = Nullables.orElseThrow(getParentNode());
 		final JsonDomNodeList<JsonDomNode<T>> childNodes = Nullables.orElseThrow(parentNode.getChildNodes());
@@ -286,7 +287,7 @@ public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 	/** {@inheritDoc} */
 	@Override
 	public short getNodeType() {
-		return Node.ELEMENT_NODE;
+		return ELEMENT_NODE;
 	}
 
 	/** {@inheritDoc} */
@@ -306,7 +307,7 @@ public class JsonDomElement<T> extends JsonDomNode<T> implements Element {
 	/** {@inheritDoc} */
 	@Nullable
 	@Override
-	@SuppressWarnings("PMD.CompareObjectsWithEquals")
+	@SuppressWarnings({ "PMD.CompareObjectsWithEquals", "PMD.LooseCoupling" })
 	public final JsonDomNode<T> getPreviousSibling() {
 		JsonDomNode<T> previousSibling = null;
 		JsonDomNode<T> currentSibling = null;

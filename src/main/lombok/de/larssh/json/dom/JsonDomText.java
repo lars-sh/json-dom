@@ -2,7 +2,6 @@ package de.larssh.json.dom;
 
 import static java.util.Collections.emptyList;
 
-import org.w3c.dom.Node;
 import org.w3c.dom.Text;
 
 import de.larssh.utils.Nullables;
@@ -69,7 +68,7 @@ public class JsonDomText<T> extends JsonDomNode<T> implements Text {
 	/** {@inheritDoc} */
 	@Override
 	public short getNodeType() {
-		return Node.TEXT_NODE;
+		return TEXT_NODE;
 	}
 
 	/** {@inheritDoc} */
