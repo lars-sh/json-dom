@@ -57,20 +57,21 @@ public class JsonDomObjectChildren&lt;T extends JsonDomValue&lt;?&gt;&gt; extend
 	 * @param jsonDomValueMapper mapper from any given type to a
 	 *                           {@link JsonDomValue} type
 	 */
+	@SuppressWarnings(&quot;PMD.ConstructorCallsOverridableMethod&quot;)
 	public &lt;V&gt; JsonDomObjectChildren(final Iterator&lt;Entry&lt;String, V&gt;&gt; children,
-<span class="fc" id="L61">			final Function&lt;V, T&gt; jsonDomValueMapper) {</span>
-<span class="fc bfc" id="L62" title="All 2 branches covered.">		while (children.hasNext()) {</span>
-<span class="fc" id="L63">			final Entry&lt;String, V&gt; entry = children.next();</span>
-<span class="fc" id="L64">			put(entry.getKey(), jsonDomValueMapper.apply(entry.getValue()));</span>
-<span class="fc" id="L65">		}</span>
-<span class="fc" id="L66">	}</span>
+<span class="fc" id="L62">			final Function&lt;V, T&gt; jsonDomValueMapper) {</span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">		while (children.hasNext()) {</span>
+<span class="fc" id="L64">			final Entry&lt;String, V&gt; entry = children.next();</span>
+<span class="fc" id="L65">			put(entry.getKey(), jsonDomValueMapper.apply(entry.getValue()));</span>
+<span class="fc" id="L66">		}</span>
+<span class="fc" id="L67">	}</span>
 
 	/** {@inheritDoc} */
 	@Override
 	@SuppressWarnings(&quot;PMD.UselessOverridingMethod&quot;)
 	public Set&lt;Entry&lt;String, T&gt;&gt; entrySet() {
 		// http://fb-contrib.sourceforge.net/bugdescriptions.html#SCII_SPOILED_CHILD_INTERFACE_IMPLEMENTOR
-<span class="fc" id="L73">		return super.entrySet();</span>
+<span class="fc" id="L74">		return super.entrySet();</span>
 	}
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

@@ -1,7 +1,7 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 JSON DOM,de.larssh.json.dom,JsonDomDocument,108,33,0,0,34,9,34,7,34,7
 JSON DOM,de.larssh.json.dom,JsonDomNamedNodeMap,44,37,2,4,9,9,9,4,7,3
-JSON DOM,de.larssh.json.dom,JsonDomElement,206,192,21,15,49,29,38,16,25,11
+JSON DOM,de.larssh.json.dom,JsonDomElement,206,192,21,15,49,31,38,16,25,11
 JSON DOM,de.larssh.json.dom,JsonDomText,69,18,0,0,17,7,17,5,17,5
 JSON DOM,de.larssh.json.dom,JsonDomXPathExpressions,22,0,0,0,2,0,2,0,2,0
 JSON DOM,de.larssh.json.dom,JsonDomAttribute,104,16,8,0,28,5,18,3,14,3
