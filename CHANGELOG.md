@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.9.5"></a>
 
-## [0.9.5](https://github.com/lars-sh/json-dom/compare/4484734a77624ebcc91048d749c5bc1801713f96...master) (2024-11-29)
+## [0.9.5](https://github.com/lars-sh/json-dom/compare/4484734a77624ebcc91048d749c5bc1801713f96...3ed4a5e0e621f193da3be43c82d865b710766854) (2024-11-29)
 
 Download at [Maven Search](https://search.maven.org/artifact/de.lars-sh/json-dom/0.9.5/jar)
 
