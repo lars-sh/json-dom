@@ -42,7 +42,7 @@ public class JacksonDomValue implements JsonDomValue<JsonNode> {
 			return new JsonDomArrayChildren<>(node.size(), node, JacksonDomValue::new);
 		}
 		if (node.isObject()) {
-			return new JsonDomObjectChildren<>(node.fields(), JacksonDomValue::new);
+			return new JsonDomObjectChildren<>(node.properties(), JacksonDomValue::new);
 		}
 		return Collections::emptySet;
 	}
