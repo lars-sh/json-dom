@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.function.Function;
 
 import de.larssh.json.dom.values.JsonDomValue;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 /**
  * JSON DOM children of a JSON object.
@@ -58,6 +59,7 @@ public class JsonDomObjectChildren<T extends JsonDomValue<?>> extends LinkedHash
 	 *                           {@link JsonDomValue} type
 	 */
 	@SuppressWarnings("PMD.ConstructorCallsOverridableMethod")
+	@SuppressFBWarnings(value = "OPM_OVERLY_PERMISSIVE_METHOD", justification = "this is an API method")
 	public <V> JsonDomObjectChildren(final Iterator<Entry<String, V>> children,
 			final Function<V, T> jsonDomValueMapper) {
 		while (children.hasNext()) {
