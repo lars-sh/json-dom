@@ -1,16 +1,17 @@
 package de.larssh.json.dom.values;
 
-import org.junit.jupiter.api.Test;
+import java.nio.file.Paths;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.JSONObject;
+import org.junit.jupiter.api.Test;
 
 import de.larssh.utils.annotations.PackagePrivate;
 
 /**
- * Test {@link JacksonDomValue}
+ * Test {@link JsonJavaDomValue}
  */
 @PackagePrivate
-class JacksonDomValueTest {
+class JsonJavaDomValueTest {
 	/**
 	 * Tests reading JSON and converting it to XML.
 	 *
@@ -19,6 +20,6 @@ class JacksonDomValueTest {
 	@Test
 	@PackagePrivate
 	void shouldReturnXml_whenConvertJsonToXml_givenJson() throws Exception {
-		JsonDomValueTests.test(json -> new JacksonDomValue(new ObjectMapper().readTree(json)));
+		JsonDomValueTests.test(Paths.get("data_HashMap.xml"), json -> new JsonJavaDomValue(new JSONObject(json)));
 	}
 }

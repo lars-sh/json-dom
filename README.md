@@ -152,26 +152,6 @@ Credits for the example goes to [the Wikipedia authors](https://en.wikipedia.org
 ## JSON Parsers
 JSON DOM does not come with its own JSON parser or JSON element objects. Instead the interface `JsonDomValue` is made up to integrate existing parsers.
 
-### Using GSON
-JSON DOM comes with a GSON implementation called `GsonDomValue`. Take a look at the following example to get a DOM Document out of a GSON JSON element.
-
-```Java
-// The JsonElement is part of GSON
-JsonElement jsonElement = ...;
-
-// At first the GSON object needs to be wrapped using its JSON DOM implementation: GsonDomValue
-GsonDomValue gsonDomValue = new GsonDomValue(jsonElement);
-
-// Finally you can either create a DOM Document out of it...
-JsonDomDocument<JsonElement> jsonDomDocument = new JsonDomDocument<>(gsonDomValue);
-
-// ...or even use the helper methods inside JsonDomXPathExpressions to evaluate XPath expressions to JSON elements.
-XPathExpression xPathExpression = ...;
-JsonElement jsonElement = JsonDomXPathExpressions.getJsonElement(jsonDomDocument, xPathExpression);
-```
-
-Note: JSON DOM does not come with GSON dependencies itself. To use `GsonDomValue` please add GSON to your dependencies.
-
 ### Using Jackson
 JSON DOM comes with a Jackson implementation called `JacksonDomValue`. Take a look at the following example coding to get a DOM Document out of a Jackson JSON node.
 
@@ -191,6 +171,46 @@ JsonNode jsonNode = JsonDomXPathExpressions.getJsonElement(jsonDomDocument, xPat
 ```
 
 Note: JSON DOM does not come with Jackson dependencies itself. To use `JacksonDomValue` please add Jackson to your dependencies.
+
+### Using JSON-Java (org.json)
+JSON DOM comes with a JSON-Java implementation called `JsonJavaDomValue`. Take a look at the following example to get a DOM Document out of a JSON-Java object.
+
+```Java
+// The JSONObject is part of JSON-Java
+JSONObject jsonObject = ...;
+
+// At first the JSON-Java object needs to be wrapped using its JSON DOM implementation: JsonJavaDomValue
+JsonJavaDomValue jsonJavaDomValue = new JsonJavaDomValue(jsonObject);
+
+// Finally you can either create a DOM Document out of it...
+JsonDomDocument<JsonElement> jsonDomDocument = new JsonDomDocument<>(jsonJavaDomValue);
+
+// ...or even use the helper methods inside JsonDomXPathExpressions to evaluate XPath expressions to JSON elements.
+XPathExpression xPathExpression = ...;
+JsonElement jsonElement = JsonDomXPathExpressions.getJsonElement(jsonDomDocument, xPathExpression);
+```
+
+Note: JSON DOM does not come with JSON-Java dependencies itself. To use `JsonJavaDomValue` please add JSON-Java (org.json) to your dependencies.
+
+### Using GSON
+JSON DOM comes with a GSON implementation called `GsonDomValue`. Take a look at the following example to get a DOM Document out of a GSON JSON element.
+
+```Java
+// The JsonElement is part of GSON
+JsonElement jsonElement = ...;
+
+// At first the GSON object needs to be wrapped using its JSON DOM implementation: GsonDomValue
+GsonDomValue gsonDomValue = new GsonDomValue(jsonElement);
+
+// Finally you can either create a DOM Document out of it...
+JsonDomDocument<JsonElement> jsonDomDocument = new JsonDomDocument<>(gsonDomValue);
+
+// ...or even use the helper methods inside JsonDomXPathExpressions to evaluate XPath expressions to JSON elements.
+XPathExpression xPathExpression = ...;
+JsonElement jsonElement = JsonDomXPathExpressions.getJsonElement(jsonDomDocument, xPathExpression);
+```
+
+Note: JSON DOM does not come with GSON dependencies itself. To use `GsonDomValue` please add GSON to your dependencies.
 
 ### Using Jakarta JSON Processing
 JSON DOM comes with a Jakarta JSON Processing implementation called `JakartaJsonProcessingDomValue`. Take a look at the following example coding to get a DOM Document out of a Jakarta JSON Processing value.
@@ -234,7 +254,13 @@ JsonNode jsonNode = new ObjectMapper().readTree(jsonString);
 ### Parse JSON with GSON
 
 ```Java
-JsonElement jsonElement = new JsonParser().parse(jsonString);
+JsonElement jsonElement = new JsonParserparseString(jsonString);
+```
+
+### Parse JSON-Java (org.json)
+
+```Java
+final JSONObject jsonObject = new JSONObject(jsonString);
 ```
 
 ### Parse JSON with JSON-P

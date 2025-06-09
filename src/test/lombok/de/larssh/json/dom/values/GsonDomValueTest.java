@@ -2,15 +2,15 @@ package de.larssh.json.dom.values;
 
 import org.junit.jupiter.api.Test;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.JsonParser;
 
 import de.larssh.utils.annotations.PackagePrivate;
 
 /**
- * Test {@link JacksonDomValue}
+ * Test {@link GsonDomValue}
  */
 @PackagePrivate
-class JacksonDomValueTest {
+class GsonDomValueTest {
 	/**
 	 * Tests reading JSON and converting it to XML.
 	 *
@@ -19,6 +19,6 @@ class JacksonDomValueTest {
 	@Test
 	@PackagePrivate
 	void shouldReturnXml_whenConvertJsonToXml_givenJson() throws Exception {
-		JsonDomValueTests.test(json -> new JacksonDomValue(new ObjectMapper().readTree(json)));
+		JsonDomValueTests.test(json -> new GsonDomValue(JsonParser.parseString(json)));
 	}
 }

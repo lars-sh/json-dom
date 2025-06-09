@@ -7,7 +7,8 @@ All notable changes to this project will be documented in this file.
 
 Download at [Maven Search](https://search.maven.org/artifact/de.lars-sh/json-dom/0.9.6/jar)
 
-* TODO
+### Added
+* JSON-Java (org.json) implementation of JsonDomValue
 
 <a name="0.9.5"></a>
 
