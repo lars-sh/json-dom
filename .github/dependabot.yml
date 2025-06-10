@@ -4,3 +4,5 @@ updates:
     directory: /
     schedule:
       interval: daily
+      - dependency-name: org.glassfish:jakarta.json
+        versions: "[2.0.0,)"
