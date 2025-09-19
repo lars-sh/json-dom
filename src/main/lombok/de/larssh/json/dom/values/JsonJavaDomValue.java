@@ -69,7 +69,7 @@ public class JsonJavaDomValue implements JsonDomValue<Object> {
 	/** {@inheritDoc} */
 	@NonNull
 	@Override
-	@SuppressWarnings({ "null", "PMD.CyclomaticComplexity", "PMD.NPathComplexity" })
+	@SuppressWarnings({ "null", "PMD.CyclomaticComplexity" })
 	@SuppressFBWarnings(value = { "ITC_INHERITANCE_TYPE_CHECKING", "WEM_WEAK_EXCEPTION_MESSAGING" },
 			justification = "intended by JSON-Java library; there is no additional data to provide here")
 	public JsonDomType getType() {

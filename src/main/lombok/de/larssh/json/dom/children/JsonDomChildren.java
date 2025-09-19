@@ -11,6 +11,7 @@ import de.larssh.json.dom.values.JsonDomValue;
  *
  * @param <T> {@link JsonDomValue} type
  */
+@SuppressWarnings("PMD.ImplicitFunctionalInterface")
 public interface JsonDomChildren<T extends JsonDomValue<?>> {
 	/**
 	 * Returns a {@link Set} view of the children.
