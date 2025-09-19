@@ -45,6 +45,7 @@
 	</ciManagement>
 
 	<properties>
+		<parent-pom.create-dependabot-yml>false</parent-pom.create-dependabot-yml>
 		<parent-pom.create-github-release-yml>true</parent-pom.create-github-release-yml>
 	</properties>
 
