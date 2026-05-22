@@ -29,10 +29,22 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @EqualsAndHashCode
 public class JettisonDomValue implements JsonDomValue<Object> {
+	/**
+	 * Checks if {@code value} is a Jettison null value
+	 *
+	 * @param value the value to check
+	 * @return {@code true} if {@code value} is a null value, else {@code false}
+	 */
 	private static boolean isNull(@Nullable final Object value) {
 		return value == null || value == JSONObject.NULL || value == JSONObject.EXPLICIT_NULL;
 	}
 
+	/**
+	 * Extracts a list of elements from {@code array}
+	 *
+	 * @param array the {@link JSONArray} instance
+	 * @return a list of elements
+	 */
 	private static List<Object> toList(final JSONArray array) {
 		final int size = array.length();
 		final List<Object> results = new ArrayList<>(size);
