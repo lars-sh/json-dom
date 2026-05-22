@@ -45,6 +45,9 @@ public class JettisonDomValue implements JsonDomValue<Object> {
 	 * @param array the {@link JSONArray} instance
 	 * @return a list of elements
 	 */
+	@SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
+	@SuppressFBWarnings(value = "EXS_EXCEPTION_SOFTENING_NO_CONSTRAINTS",
+			justification = "unexpected checked exception by Jettison library")
 	private static List<Object> toList(final JSONArray array) {
 		final int size = array.length();
 		final List<Object> results = new ArrayList<>(size);
