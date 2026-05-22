@@ -32,7 +32,7 @@ Beside having the possibility, please keep in mind, that snapshot builds might b
 ## DOM implementation for JSON
 While DOM is widely used for XML structured data, it can be useful for JSON data, too. This project wraps JSON elements to fit the DOM interfaces.
 
-JSON DOM does not come with its own JSON parser or JSON element objects. Instead it allows to plug in existing parsers. The JSON DOM is not modifiable.
+JSON DOM does not come with its own JSON parser or JSON element objects. Instead, it allows to plug in existing parsers. The JSON DOM is not modifiable.
 
 ### DOM Structure
 Each JSON element is represented by a DOM element.
@@ -49,7 +49,7 @@ Each DOM element contains the following attributes:
 The node names inside a JSON DOM are compatible with the XML standard. Therefore keys that are invalid XML tag names are replaced inside JSON DOM. The attribute `name` still contains the original JSON object key.
 
 ### Example
-JSON DOM does not mean converting to XML, but that might be one case. And as most developers are familiar with XML DOM already the following snippet demonstrates a simple JSON document and how it looks alike in XML notation when using JSON DOM.
+JSON DOM does not solely mean converting to XML, but that might be one use case. And as most developers are familiar with XML DOM already the following snippet demonstrates a simple JSON document and how it looks alike in XML notation when using JSON DOM.
 
 #### JSON
 Credits for the example goes to [the Wikipedia authors](https://en.wikipedia.org/wiki/JSON).
@@ -150,7 +150,7 @@ Credits for the example goes to [the Wikipedia authors](https://en.wikipedia.org
 ```
 
 ## JSON Parsers
-JSON DOM does not come with its own JSON parser or JSON element objects. Instead the interface `JsonDomValue` is made up to integrate existing parsers.
+JSON DOM does not come with its own JSON parser or JSON element objects. Instead, the interface `JsonDomValue` is made up to integrate existing parsers.
 
 ### Using Jackson
 JSON DOM comes with a Jackson implementation called `JacksonDomValue`. Take a look at the following example coding to get a DOM Document out of a Jackson JSON node.
@@ -165,7 +165,7 @@ JacksonDomValue jacksonDomValue = new JacksonDomValue(jsonNode);
 // Finally you can either create a DOM Document out of it...
 JsonDomDocument<JsonNode> jsonDomDocument = new JsonDomDocument<>(jacksonDomValue);
 
-// ...or even use the helper methods inside JsonDomXPathExpressions to evaluate XPath expressions to JSON elements.
+// ...or even use the helper methods inside JsonDomXPathExpressionsto evaluate XPath expressions on JSON elements.
 XPathExpression xPathExpression = ...;
 JsonNode jsonNode = JsonDomXPathExpressions.getJsonElement(jsonDomDocument, xPathExpression);
 ```
@@ -185,9 +185,9 @@ JsonJavaDomValue jsonJavaDomValue = new JsonJavaDomValue(jsonObject);
 // Finally you can either create a DOM Document out of it...
 JsonDomDocument<JsonElement> jsonDomDocument = new JsonDomDocument<>(jsonJavaDomValue);
 
-// ...or even use the helper methods inside JsonDomXPathExpressions to evaluate XPath expressions to JSON elements.
+// ...or even use the helper methods inside JsonDomXPathExpressionsto evaluate XPath expressions on JSON elements.
 XPathExpression xPathExpression = ...;
-JsonElement jsonElement = JsonDomXPathExpressions.getJsonElement(jsonDomDocument, xPathExpression);
+JSONObject jsonObject = JsonDomXPathExpressions.getJsonElement(jsonDomDocument, xPathExpression);
 ```
 
 Note: JSON DOM does not come with JSON-Java dependencies itself. To use `JsonJavaDomValue` please add JSON-Java (org.json) to your dependencies.
@@ -205,12 +205,32 @@ GsonDomValue gsonDomValue = new GsonDomValue(jsonElement);
 // Finally you can either create a DOM Document out of it...
 JsonDomDocument<JsonElement> jsonDomDocument = new JsonDomDocument<>(gsonDomValue);
 
-// ...or even use the helper methods inside JsonDomXPathExpressions to evaluate XPath expressions to JSON elements.
+// ...or even use the helper methods inside JsonDomXPathExpressionsto evaluate XPath expressions on JSON elements.
 XPathExpression xPathExpression = ...;
 JsonElement jsonElement = JsonDomXPathExpressions.getJsonElement(jsonDomDocument, xPathExpression);
 ```
 
 Note: JSON DOM does not come with GSON dependencies itself. To use `GsonDomValue` please add GSON to your dependencies.
+
+### Using Jettison
+JSON DOM comes with a Jettison implementation called `JettisonDomValue`. Take a look at the following example to get a DOM Document out of a Jettison JSON element.
+
+```Java
+// The JsonElement is part of Jettison
+JSONObject jsonObject = ...;
+
+// At first the Jettison object needs to be wrapped using its JSON DOM implementation: JettisonDomValue
+JettisonDomValue jettisonDomValue = new JettisonDomValue(jsonObject);
+
+// Finally you can either create a DOM Document out of it...
+JsonDomDocument<JSONObject> jsonDomDocument = new JsonDomDocument<>(jettisonDomValue);
+
+// ...or even use the helper methods inside JsonDomXPathExpressionsto evaluate XPath expressions on JSON elements.
+XPathExpression xPathExpression = ...;
+JSONObject jsonObject = JsonDomXPathExpressions.getJsonElement(jsonDomDocument, xPathExpression);
+```
+
+Note: JSON DOM does not come with Jettison dependencies itself. To use `JettisonDomValue` please add Jettison to your dependencies.
 
 ### Using Jakarta JSON Processing
 JSON DOM comes with a Jakarta JSON Processing implementation called `JakartaJsonProcessingDomValue`. Take a look at the following example coding to get a DOM Document out of a Jakarta JSON Processing value.
@@ -225,7 +245,7 @@ JakartaJsonProcessingDomValue jakartaJsonProcessingDomValue = new JakartaJsonPro
 // Finally you can either create a DOM Document out of it...
 JsonDomDocument<JsonValue> jsonDomDocument = new JsonDomDocument<>(jakartaJsonProcessingDomValue);
 
-// ...or even use the helper methods inside JsonDomXPathExpressions to evaluate XPath expressions to JSON elements.
+// ...or even use the helper methods inside JsonDomXPathExpressionsto evaluate XPath expressions on JSON elements.
 XPathExpression xPathExpression = ...;
 JsonValue jsonValue = JsonDomXPathExpressions.getJsonElement(jsonDomDocument, xPathExpression);
 ```
@@ -251,16 +271,22 @@ The following code snippets might help to either get started with JSON DOM or de
 JsonNode jsonNode = new ObjectMapper().readTree(jsonString);
 ```
 
+### Parse JSON-Java (org.json)
+
+```Java
+final JSONObject jsonObject = new JSONObject(jsonString);
+```
+
 ### Parse JSON with GSON
 
 ```Java
 JsonElement jsonElement = new JsonParserparseString(jsonString);
 ```
 
-### Parse JSON-Java (org.json)
+### Parse JSON with Jettison
 
 ```Java
-final JSONObject jsonObject = new JSONObject(jsonString);
+JSONObject jsonObject = new JSONObject(jsonString);
 ```
 
 ### Parse JSON with JSON-P

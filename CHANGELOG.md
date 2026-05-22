@@ -9,6 +9,7 @@ Download at [Maven Search](https://search.maven.org/artifact/de.lars-sh/json-dom
 
 ### Added
 * JSON-Java (org.json) implementation of JsonDomValue
+* Jettison implementation of JsonDomValue
 
 <a name="0.9.5"></a>
 
